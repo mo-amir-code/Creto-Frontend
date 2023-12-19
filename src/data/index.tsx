@@ -30,7 +30,7 @@ export const navbarData = [
     },
 ]
 
-export const dropdowndata = [
+export const dropdownTypedata = [
     {
         name:"Mountain Bike",
         value:"Mountain Bike"
@@ -54,5 +54,59 @@ export const dropdowndata = [
     {
         name:"Track Bike",
         value:"Track Bike"
+    },
+]
+
+export const dropdownSizedata = [
+    {
+        name:20,
+        value:20
+    },
+    {
+        name:24,
+        value:24
+    },
+    {
+        name:26,
+        value:26
+    },
+    {
+        name:27,
+        value:27
+    },
+    {
+        name:28,
+        value:28
+    },
+    {
+        name:30,
+        value:30
+    },
+]
+
+export const dropdownBranddata = [
+    {
+        name:"Abcsd",
+        value:"Abcsd"
+    },
+    {
+        name:"Bcgds",
+        value:"Bcgds"
+    },
+    {
+        name:"Cdjhs",
+        value:"Cdjhs"
+    },
+    {
+        name:"Dskjd",
+        value:"Dskjd"
+    },
+    {
+        name:"Efdgf",
+        value:"Efdgf"
+    },
+    {
+        name:"Fsadkj",
+        value:"Fsadkj"
     },
 ]

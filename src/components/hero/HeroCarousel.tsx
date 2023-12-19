@@ -1,4 +1,5 @@
 import hero_bike from "../../assets/hero/hero_bike.png"
+import Button from "../buttons/button"
 
 const HeroCarousel = () => {
   return (
@@ -7,7 +8,7 @@ const HeroCarousel = () => {
       <div className="font-[Teko] absolute top-0 gap-4 left-0 w-full flex flex-col justify-center items-center" >
         <h1 className="text-7xl max-[1200px]:text-6xl max-sm:text-4xl font-semibold text-secondary-color mt-8 text-center" >BEST BIKES FOR YOU</h1>
         <p className="text-xl max-[1200px]:text-lg max-sm:text-base max-sm:max-w-xs max-w-md text-center font-light leading-6" >Lorem ipsum dolor sit amet elit. Neque totam nostrum, odio fugit ipsum recusandae eaque animi autem beatae magnam, delectus temporibus?</p>
-        <button className="btn text-xl mt-4 border-2 tracking-wider font-normal border-primary-color relative" >BUY NOW</button>
+        <Button text="BUY NOW" />
       </div>
 
     </div>

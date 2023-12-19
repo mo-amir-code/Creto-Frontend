@@ -1,10 +1,12 @@
 import { useState } from "react"
-import { dropdowndata } from "../../data"
+import { dropdownTypedata, dropdownSizedata, dropdownBranddata } from "../../data"
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
 
 
 const FindBike = () => {
-    const [selectedType, setSelectedType] = useState(dropdowndata[0]);
+    const [selectedType, setSelectedType] = useState(dropdownTypedata[0]);
+    const [selectedSize, setSelectedSize] = useState(dropdownSizedata[0]);
+    const [selectedBrand, setSelectedBrand] = useState(dropdownBranddata[0]);
     const [isTypeOpen, setIsTypeOpen] = useState(false)
     const [isBrand, setIsBrand] = useState(false)
     const [isWheelSize, setIsWheelSize] = useState(false)
@@ -19,17 +21,17 @@ const FindBike = () => {
                     </div> */}
                     <div onClick={() => setIsTypeOpen(!isTypeOpen)} className="px-6 flex-1 py-3 border border-secondary-color_3 cursor-pointer relative" >
                         <h5 className="font-bold text-base min-w-[200px] max-sm:text-sm max-sm:min-w-[100px] w-full flex items-center justify-between gap-6" >{selectedType.name} <ChevronDownIcon className={`w-6 h-6 ${isTypeOpen ? 'rotate-180' : 'rotate-0'} transition-all duration-200`} /></h5>
-                        <DropDown list={dropdowndata} open={isTypeOpen} setSelected={setSelectedType} />
+                        <DropDown list={dropdownTypedata} open={isTypeOpen} setSelected={setSelectedType} />
                     </div>
                     <div onClick={() => setIsWheelSize(!isWheelSize)} className="px-6 flex-1 py-3 border border-secondary-color_3 cursor-pointer relative" >
-                        <h5 className="font-bold text-base min-w-[200px] max-sm:text-sm max-sm:min-w-[100px] w-full flex items-center justify-between gap-6" >{selectedType.name} <ChevronDownIcon className={`w-6 h-6 ${isWheelSize ? 'rotate-180' : 'rotate-0'} transition-all duration-200`} /></h5>
-                        <DropDown list={dropdowndata} open={isWheelSize} setSelected={setIsWheelSize} />
+                        <h5 className="font-bold text-base min-w-[200px] max-sm:text-sm max-sm:min-w-[100px] w-full flex items-center justify-between gap-6" >{selectedSize.name} <ChevronDownIcon className={`w-6 h-6 ${isWheelSize ? 'rotate-180' : 'rotate-0'} transition-all duration-200`} /></h5>
+                        <DropDown list={dropdownSizedata} open={isWheelSize} setSelected={setIsWheelSize} />
                     </div>
                     <div onClick={() => setIsBrand(!isBrand)} className="px-6 flex-1 py-3 border border-secondary-color_3 cursor-pointer relative" >
-                        <h5 className="font-bold text-base min-w-[200px] max-sm:text-sm max-sm:min-w-[100px] w-full flex items-center justify-between gap-6" >{selectedType.name} <ChevronDownIcon className={`w-6 h-6 ${isBrand ? 'rotate-180' : 'rotate-0'} transition-all duration-200`} /></h5>
-                        <DropDown list={dropdowndata} open={isBrand} setSelected={setIsBrand} />
+                        <h5 className="font-bold text-base min-w-[200px] max-sm:text-sm max-sm:min-w-[100px] w-full flex items-center justify-between gap-6" >{selectedBrand.name} <ChevronDownIcon className={`w-6 h-6 ${isBrand ? 'rotate-180' : 'rotate-0'} transition-all duration-200`} /></h5>
+                        <DropDown list={dropdownBranddata} open={isBrand} setSelected={setIsBrand} />
                     </div>
-                    <div className="px-6 text-black py-3 min-w-[200px] max-sm:min-w-[100px] flex-1 flex items-center justify-center border-2 tracking-widest font-bold border-primary-color" >
+                    <div className="px-6 text-black cursor-pointer py-3 min-w-[200px] max-sm:min-w-[100px] flex-1 flex items-center justify-center border-2 tracking-widest font-bold border-primary-color" >
                         <button>SEARCH</button>
                     </div>
                 </form>
@@ -39,8 +41,8 @@ const FindBike = () => {
 }
 
 interface DropDownType {
-    name: string,
-    value: string,
+    name: string | number,
+    value: string | number,
 }
 
 function DropDown({ list, open, setSelected }: { list: DropDownType[], open: boolean, setSelected: Function }) {

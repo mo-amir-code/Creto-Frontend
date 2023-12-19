@@ -10,6 +10,14 @@
   }
 }
 
+/* body{
+  background-color: #FAFAFA;
+} */
+
+.morphysm{
+  box-shadow: 20px 20px 60px #00000041,-20px -20px 60px #ffffff40 inset;
+}
+
 .scale_ani_1 {
   scale: 1;
   animation: scale_1 4s ease-in-out infinite;
@@ -109,6 +117,9 @@
     transform: translateY(-150%);
     opacity: 0;
   }
+}
+
+.category_x{
 }
 
 
