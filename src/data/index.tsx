@@ -1,3 +1,8 @@
+import shipping from "../assets/advantages/cart.svg"
+import gear from "../assets/advantages/gear.svg"
+import discount from "../assets/advantages/discount.svg"
+import wallet from "../assets/advantages/wallet.svg"
+
 export const navbarData = [
     {
         name:"HOME",
@@ -109,4 +114,23 @@ export const dropdownBranddata = [
         name:"Fsadkj",
         value:"Fsadkj"
     },
+]
+
+export const advantages = [
+    {
+        name:"Free shipping from $500",
+        image:shipping,
+    },
+    {
+        name:"Warranty service for 3 months",
+        image:gear,
+    },
+    {
+        name:"Exchange and return within 14 days",
+        image:wallet,
+    },
+    {
+        name:"Discounts for customers",
+        image:discount,
+    }
 ]
