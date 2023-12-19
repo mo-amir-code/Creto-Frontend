@@ -1,5 +1,5 @@
 import hero_bike from "../../assets/hero/hero_bike.png"
-import Button from "../buttons/button"
+import Button from "../buttons/Button"
 
 const HeroCarousel = () => {
   return (
