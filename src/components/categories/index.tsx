@@ -5,7 +5,7 @@ import ArrowButton from "./ArrowButton";
 import { useRef } from "react";
 
 const Categories = () => {
-    const sliderRef = useRef<Slider>();
+    const sliderRef = useRef<Slider>(null);
 
     const handlePrev = () => {
         if (sliderRef.current) {

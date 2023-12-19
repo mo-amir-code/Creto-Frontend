@@ -1,4 +1,4 @@
-import Button from "../buttons/button"
+import Button from "../buttons/Button"
 import { useState } from "react"
 
 interface CategoryType{
