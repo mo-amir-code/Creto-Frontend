@@ -53,6 +53,20 @@
   }
 }
 
+.nav_top_animation_out {
+  width: 0%;
+  animation: navOut 0.2s ease-in-out;
+}
+
+@keyframes navOut {
+  0% {
+    width: 100%;
+  }
+  100% {
+    width: 0%;
+  }
+}
+
 .nav_top_animation_in {
   width: 100%;
   animation: navIn 0.2s ease-in;
@@ -67,6 +81,15 @@
   }
 }
 
+.bottom_line_ani{
+  width: 100%;
+  animation: navIn 0.5s ease-in;
+}
+
+.bottom_line_ani_out{
+  width: 0%;
+  animation: navOut 0.5s ease-out;
+}
 
 .hero_bike_ani{
   animation: bike_ani 1s ease-in-out;

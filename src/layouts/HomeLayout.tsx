@@ -4,6 +4,11 @@ import Hero from "../components/hero"
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Advantages from "../components/advantages";
+import OurProducts from "../components/ourProducts";
+import Subscribe from "../components/subscribe";
+import TopSale from "../components/topProducts";
+import Labels from "../components/labels";
+import Footer from "../components/footer";
 
 const HomeLayout = () => {
     return (
@@ -14,7 +19,11 @@ const HomeLayout = () => {
                 <Categories />
             </div>
             <Advantages />
-            <div className="h-screen" ></div>
+            <OurProducts />
+            <Subscribe />
+            <TopSale />
+            <Labels />
+            <Footer />
         </div>
     )
 }
