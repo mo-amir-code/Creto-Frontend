@@ -4,7 +4,7 @@ const Footer = () => {
     return (
         <div className="max-w-6xl w-full mx-auto border-t border-secondary-color" >
             <div className="flex items-center gap-5 justify-center flex-wrap py-10 font-[Teko]" >
-                <div className="flex-1 text-secondary-color space-y-3" >
+                <div className="flex-1 text-secondary-color space-y-3 px-4" >
                     <h2 className="text-xl font-bold w-full max-sm:text-lg " >SUBSCRIBE</h2>
                     <p className="w-full text-xl max-sm:text-lg max-sm:leading-5 leading-6" >Subscribe us and you won't miss the new arrivals, as well as discounts and sales.</p>
                     <form className="w-full flex max-w-xl items-center max-sm:flex-col gap-4 justify-center" >
