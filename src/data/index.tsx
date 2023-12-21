@@ -19,32 +19,15 @@ import label_5 from "../assets/labels/label_5.svg"
 export const navbarData = [
     {
         name:"HOME",
-    },
-    {
-        name:"SERVICES",
+        path:"/"
     },
     {
         name:"SHOP",
-    },
-    {
-        name:"GALLERY",
-    },
-    {
-        name:"PAGES",
-        children:[
-            {
-                name:"About Us",
-            },
-            {
-                name:"News",
-            },
-            {
-                name:"Page Error 404",
-            },
-        ]
+        path:"/shop"
     },
     {
         name:"CONTACTS",
+        path:"/contact"
     },
 ]
 
@@ -282,5 +265,70 @@ export const labels = [
     {
         _id:5,
         lbl:label_5
+    },
+]
+
+export const sortByData = [
+    {
+        name:"Best Selling",
+        value:"Best Selling"
+    },
+    {
+        name:"New Product",
+        value:"New Product"
+    },
+    {
+        name:"Sale Product",
+        value:"Sale Product"
+    },
+]
+
+export const typesOfBike = [
+    {
+        name: "Road Bike",
+        id:"road_bike",
+    },
+    {
+        name: "Mountain Bike",
+        id:"mountain_bike",
+    },
+    {
+        name: "BMX Bike",
+        id:"bmx_bike",
+    },
+    {
+        name: "City Bike",
+        id:"city_bike",
+    },
+    {
+        name: "Kids Bike",
+        id:"kids_bike",
+    },
+]
+
+export const colors = [
+    {
+        code:"#F3DECA",
+    },
+    {
+        code:"#FA9483",
+    },
+    {
+        code:"#2D4057",
+    },
+    {
+        code:"#4097AA",
+    },
+    {
+        code:"#0AC693",
+    },
+    {
+        code:"#0C5061",
+    },
+    {
+        code:"#F74440",
+    },
+    {
+        code:"#E0E44A",
     },
 ]

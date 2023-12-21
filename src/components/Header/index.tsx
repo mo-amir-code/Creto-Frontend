@@ -1,15 +1,15 @@
-import { } from "@heroicons/react/20/solid"
 import { PhoneIcon, EnvelopeIcon, HeartIcon, UserIcon, ShoppingCartIcon } from "@heroicons/react/24/solid"
 import { useState } from "react"
 import logo from "../../assets/brand/creto_logo.svg"
 import { navbarData } from "../../data"
+import { Link } from "react-router-dom"
 
 
 const Header = () => {
     const [menuOpen, setMenuOpen] = useState(false);
 
     return (
-        <header>
+        <header className="max-w-6xl mx-auto " >
             <div className="flex items-center justify-between max-md:flex-row-reverse max-md:py-1 py-4 border-b border-secondary-color_3 px-2" >
                 <div className="flex items-center gap-6 max-md:hidden" >
                     <div className="flex items-center gap-3 hover:text-primary-color cursor-pointer transition-all ease-in-out duration-500" >
@@ -54,7 +54,7 @@ const Header = () => {
                 <div className="flex items-center gap-5 max-md:hidden font-[Teko] text-lg font-extralight tracking-wider" >
                     {
                         navbarData.map((item, idx) => (
-                            <div className="h-full py-4 relative group cursor-pointer" key={idx} >{item.name} <span className="absolute hidden group-hover:block nav_top_animation_in -top-[3%] rounded-lg left-auto right-auto h-[3px] bg-primary-color">{" "}</span></div>
+                            <Link to={item.path} className="h-full py-4 relative group cursor-pointer" key={idx} >{item.name} <span className="absolute hidden group-hover:block nav_top_animation_in -top-[3%] rounded-lg left-auto right-auto h-[3px] bg-primary-color">{" "}</span></Link>
                         ))
                     }
                 </div>

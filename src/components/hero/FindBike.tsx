@@ -21,15 +21,15 @@ const FindBike = () => {
                     </div> */}
                     <div onClick={() => setIsTypeOpen(!isTypeOpen)} className="px-6 flex-1 py-3 border border-secondary-color_3 cursor-pointer relative" >
                         <h5 className="font-bold text-base min-w-[200px] max-sm:text-sm max-sm:min-w-[100px] w-full flex items-center justify-between gap-6" >{selectedType.name} <ChevronDownIcon className={`w-6 h-6 ${isTypeOpen ? 'rotate-180' : 'rotate-0'} transition-all duration-200`} /></h5>
-                        <DropDown list={dropdownTypedata} open={isTypeOpen} setSelected={setSelectedType} />
+                        <DropDown list={dropdownTypedata} isFilter={false} open={isTypeOpen} setSelected={setSelectedType} />
                     </div>
                     <div onClick={() => setIsWheelSize(!isWheelSize)} className="px-6 flex-1 py-3 border border-secondary-color_3 cursor-pointer relative" >
                         <h5 className="font-bold text-base min-w-[200px] max-sm:text-sm max-sm:min-w-[100px] w-full flex items-center justify-between gap-6" >{selectedSize.name} <ChevronDownIcon className={`w-6 h-6 ${isWheelSize ? 'rotate-180' : 'rotate-0'} transition-all duration-200`} /></h5>
-                        <DropDown list={dropdownSizedata} open={isWheelSize} setSelected={setSelectedSize} />
+                        <DropDown list={dropdownSizedata} isFilter={false} open={isWheelSize} setSelected={setSelectedSize} />
                     </div>
                     <div onClick={() => setIsBrand(!isBrand)} className="px-6 flex-1 py-3 border border-secondary-color_3 cursor-pointer relative" >
                         <h5 className="font-bold text-base min-w-[200px] max-sm:text-sm max-sm:min-w-[100px] w-full flex items-center justify-between gap-6" >{selectedBrand.name} <ChevronDownIcon className={`w-6 h-6 ${isBrand ? 'rotate-180' : 'rotate-0'} transition-all duration-200`} /></h5>
-                        <DropDown list={dropdownBranddata} open={isBrand} setSelected={setSelectedBrand} />
+                        <DropDown list={dropdownBranddata} isFilter={false} open={isBrand} setSelected={setSelectedBrand} />
                     </div>
                     <div className="px-6 text-black cursor-pointer py-3 min-w-[200px] max-sm:min-w-[100px] flex-1 flex items-center justify-center border-2 tracking-widest font-bold border-primary-color" >
                         <button>SEARCH</button>
@@ -45,12 +45,20 @@ interface DropDownType {
     value: string | number,
 }
 
-function DropDown({ list, open, setSelected }: { list: DropDownType[], open: boolean, setSelected: Function }) {
+export function DropDown({ list, open, setSelected, isFilter }: { list: DropDownType[], open: boolean, setSelected: Function, isFilter:boolean }) {
+    const handleOnClick = (el:{name:string | number, value:string | number}) => {
+        if(isFilter){
+            setSelected(el.name);
+        }else{
+            setSelected(el)
+        }
+    }
+
     return (
         <div className={`w-full ${open ? "dropdown_in" : "dropdown_out"}  font-medium text-sm absolute top-[105%] border border-secondary-color_3 left-0 bg-white z-40`} >
             {
                 list.map((el) => (
-                    <li onClick={() => setSelected(el)} key={el.value} className="px-5 py-2 hover:font-bold list-none hover:bg-secondary-color_5" >{el.name}</li>
+                    <li onClick={()=>handleOnClick(el)} key={el.value} className="px-5 py-2 hover:font-bold list-none hover:bg-secondary-color_5" >{el.name}</li>
                 ))
             }
         </div>

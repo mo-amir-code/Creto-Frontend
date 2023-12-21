@@ -49,7 +49,7 @@ const Categories = () => {
     };
 
     return (
-        <div className="py-16 w-full mt-96 gap-4 px-4 relative" >
+        <div className="py-16 w-full mt-96 gap-4 px-4 relative max-w-6xl mx-auto" >
             <Slider {...settings} ref={sliderRef} >
                 <Category type="MOUNTAIN & ROAD BIKE" img={mountainBike} />
                 <Category type="BICYCLE SPARE PARTS" img={spareParts} />
