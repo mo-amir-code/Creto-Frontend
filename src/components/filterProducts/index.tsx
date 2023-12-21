@@ -3,10 +3,10 @@ import { productCardsData, sortByData } from "../../data"
 import ProductCard from "../ProductCard"
 import { DropDown } from "../hero/FindBike";
 import { ChevronDownIcon, ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/solid";
-import CartSection from "./cartSection";
 import Bike from "./Bike";
 import Price from "./Price";
 import Colors from "./Colors";
+import CartSection from "./Cart";
 
 
 const FilterProducts = () => {
