@@ -1,12 +1,10 @@
 import { PhoneIcon, EnvelopeIcon, HeartIcon, UserIcon, ShoppingCartIcon } from "@heroicons/react/24/solid"
-import { useState } from "react"
 import logo from "../../assets/brand/creto_logo.svg"
 import { navbarData } from "../../data"
 import { Link } from "react-router-dom"
 
 
-const Header = () => {
-    const [menuOpen, setMenuOpen] = useState(false);
+const Header = ({menuOpen, setMenuOpen}:{menuOpen:boolean, setMenuOpen:Function}) => {
 
     return (
         <header className="max-w-6xl mx-auto " >
