@@ -15,8 +15,8 @@ const FilterProducts = () => {
 
     return (
         <div className="max-w-6xl w-full mx-auto py-20 text-secondary-color" >
-            <div className="flex items-start w-full" >
-                <div className="flex-[0.25]" >
+            <div className="flex items-start max-md:flex-col max-md:justify-start max-md:items-center w-full" >
+                <div className="flex-[0.25] max-md:flex-1 max-md:mx-auto max-md:max-w-[400px] w-full max-md:mb-20" >
                     <div className="w-full px-4" >
                         <CartSection />
                         <Bike />
@@ -25,13 +25,13 @@ const FilterProducts = () => {
                         <FilterReset />
                     </div>
                 </div>
-                <div className="flex-[0.75]" >
+                <div className="flex-[0.75] max-md:flex-1" >
                     <div>
-                        <h2 className="text-5xl font-bold font-[Teko] px-4 max-[1200px]:text-4xl max-md:text-3xl" >ROAD BIKE</h2>
+                        <h2 className="text-5xl font-bold font-[Teko] px-4 max-[1200px]:text-4xl max-md:text-2xl" >ROAD BIKE</h2>
                         <div className="w-full flex items-center justify-between px-4" >
-                            <p className="text-lg font-normal text-secondary-color_3" >120 products found</p>
+                            <p className="text-lg font-normal text-secondary-color_3 max-md:text-sm" >120 products found</p>
                             <div className="flex items-center justify-end" >
-                                <div className="text-xl space-x-2 font-normal text-secondary-color/60 relative font-[Teko] flex items-center" ><span>Sort By:</span><div className="font-bold text-secondary-color cursor-pointer flex items-center justify-center" onClick={() => setIsSortByOpen(!isSortByOpen)} >
+                                <div className="text-xl max-md:text-base space-x-2 font-normal text-secondary-color/60 relative font-[Teko] flex items-center" ><span>Sort By:</span><div className="font-bold text-secondary-color cursor-pointer flex items-center justify-center" onClick={() => setIsSortByOpen(!isSortByOpen)} >
                                     {sortBy}
                                     <DropDown list={sortByData} isFilter={true} setSelected={setSortBy} open={isSortByOpen} />
                                     <ChevronDownIcon className={`w-4 h-4 ${isSortByOpen ? "rotate-180" : "rotate-0"} transition-all duration-200`} />
