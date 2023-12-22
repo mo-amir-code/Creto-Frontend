@@ -58,7 +58,7 @@ const Header = ({menuOpen, setMenuOpen}:{menuOpen:boolean, setMenuOpen:Function}
                     }
                 </div>
             </div>
-            <OpenMenu open={menuOpen} />
+            <OpenMenu open={menuOpen} setMenuOpen={setMenuOpen} />
         </header>
     )
 }
