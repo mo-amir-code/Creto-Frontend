@@ -22,7 +22,7 @@ const FilterProducts = () => {
                         FILTER
                     </div>
                 </div>
-                <div className={`flex-[0.25] max-md:flex-1 max-md:mx-auto transition-all ${isFilterOpen && "max-md:hidden"} duration-300 max-md:max-w-full max-w-[400px] w-full max-md:mb-20`} >
+                <div className={`flex-[0.25] max-md:flex-1 max-md:mx-auto transition-all ${!isFilterOpen && "max-md:hidden"} duration-300 max-md:max-w-full max-w-[400px] w-full max-md:mb-20`} >
                     <div className={`w-full px-4 enter_from_left transition-all duration-300`} >
                         <CartSection />
                         <Bike />
