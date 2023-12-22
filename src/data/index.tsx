@@ -15,6 +15,9 @@ import label_2 from "../assets/labels/label_2.svg"
 import label_3 from "../assets/labels/label_3.svg"
 import label_4 from "../assets/labels/label_4.svg"
 import label_5 from "../assets/labels/label_5.svg"
+import phone from "../assets/contact/phone.svg";
+import envelope from "../assets/contact/envelope.svg";
+import location from "../assets/contact/location.svg";
 
 export const navbarData = [
     {
@@ -28,6 +31,14 @@ export const navbarData = [
     {
         name:"CONTACTS",
         path:"/contact"
+    },
+    {
+        name:"PROFILE",
+        path:"/profile"
+    },
+    {
+        name:"CART",
+        path:"/cart"
     },
 ]
 
@@ -330,5 +341,26 @@ export const colors = [
     },
     {
         code:"#E0E44A",
+    },
+]
+
+export const contactLabels  = [
+    {
+        name:"need help",
+        icon:phone,
+        info1:"1-800-488-6040",
+        info2:"1-800-578-4090",
+    },
+    {
+        name:"questions",
+        icon:envelope,
+        info1:"mo.amir.code@gmail.com",
+        info2:"aamir.business.hub@gmail.com",
+    },
+    {
+        name:"address",
+        icon:location,
+        info1:"8500, Lorem Street,",
+        info2:"Chicago, IL, 55030",
     },
 ]

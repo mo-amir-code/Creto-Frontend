@@ -2,12 +2,13 @@ import { PhoneIcon, EnvelopeIcon, HeartIcon, UserIcon, ShoppingCartIcon } from "
 import logo from "../../assets/brand/creto_logo.svg"
 import { navbarData } from "../../data"
 import { Link } from "react-router-dom"
+import { OpenMenu } from "../../layouts/HomeLayout"
 
 
 const Header = ({menuOpen, setMenuOpen}:{menuOpen:boolean, setMenuOpen:Function}) => {
 
     return (
-        <header className="max-w-6xl mx-auto " >
+        <header className="max-w-6xl mx-auto relative" >
             <div className="flex items-center justify-between max-md:flex-row-reverse max-md:py-1 py-4 border-b border-secondary-color_3 px-2" >
                 <div className="flex items-center gap-6 max-md:hidden" >
                     <div className="flex items-center gap-3 hover:text-primary-color cursor-pointer transition-all ease-in-out duration-500" >
@@ -46,9 +47,9 @@ const Header = ({menuOpen, setMenuOpen}:{menuOpen:boolean, setMenuOpen:Function}
                 </div>
             </div>
             <div className="flex items-center max-md:justify-center max-md:py-2 justify-between px-2" >
-                <div className="max-md:w-24" >
+                <Link to={"/"} className="max-md:w-24" >
                     <img src={logo} alt="logo" />
-                </div>
+                </Link>
                 <div className="flex items-center gap-5 max-md:hidden font-[Teko] text-lg font-extralight tracking-wider" >
                     {
                         navbarData.map((item, idx) => (
@@ -57,6 +58,7 @@ const Header = ({menuOpen, setMenuOpen}:{menuOpen:boolean, setMenuOpen:Function}
                     }
                 </div>
             </div>
+            <OpenMenu open={menuOpen} />
         </header>
     )
 }

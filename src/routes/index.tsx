@@ -25,6 +25,10 @@ const Routes = () => {
             path:"shop",
             element:<ShopPage />
           },
+          {
+            path:"contact",
+            element:<ContactPage />
+          },
         ]
     }
   ])
@@ -36,6 +40,7 @@ const Routes = () => {
 const HomeLayout = Loadable(lazy(()=>import("../layouts/HomeLayout")));
 const HomePage =  Loadable(lazy(()=>import("../pages/HomePage")));
 const ShopPage =  Loadable(lazy(()=>import("../pages/ShopPage")));
+const ContactPage =  Loadable(lazy(()=>import("../pages/ContactPage")));
 
 
 

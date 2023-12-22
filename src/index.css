@@ -387,3 +387,37 @@
 }
 
 /* end double dot button */
+
+.enter_from_left{
+  animation: fromLeft 0.4s ease-in-out;
+}
+
+@keyframes fromLeft {
+  0%{
+    transform: translateX(-60%);
+  }
+  100%{
+    transform: translateX(0%);
+  }
+}
+
+.out_from_left{
+  display: none;
+  animation: out_left 0.4s ease-in-out;
+}
+
+@keyframes out_left {
+  0%{
+    display: block;
+    transform: translateX(0%);
+  }
+  100%{
+    display: none;
+    opacity: 0;
+    transform: translateX(-80%);
+  }
+}
+
+.on_focus:focus-within input:focus{
+  border-color: #FFD910;
+}

@@ -11,13 +11,19 @@ import CartSection from "./Cart";
 
 const FilterProducts = () => {
     const [sortBy, setSortBy] = useState(sortByData[0].name);
-    const [isSortByOpen, setIsSortByOpen] = useState(false);
+    const [isSortByOpen, setIsSortByOpen] = useState<boolean>(false);
+    const [isFilterOpen, setIsFilterOpen] = useState<boolean>(false);
 
     return (
         <div className="max-w-6xl w-full mx-auto py-20 text-secondary-color" >
-            <div className="flex items-start max-md:flex-col max-md:justify-start max-md:items-center w-full" >
-                <div className="flex-[0.25] max-md:flex-1 max-md:mx-auto max-md:max-w-[400px] w-full max-md:mb-20" >
-                    <div className="w-full px-4" >
+            <div className="flex items-start max-md:flex-col max-md:gap-8 max-md:justify-start max-md:items-center w-full" >
+                <div onClick={()=>setIsFilterOpen(!isFilterOpen)} className="px-4 cursor-pointer w-full hidden max-md:block" >
+                    <div className="w-full py-3 border-2 border-primary-color text-xl flex font-medium font-[Teko] items-center justify-center" >
+                        FILTER
+                    </div>
+                </div>
+                <div className={`flex-[0.25] max-md:flex-1 max-md:mx-auto transition-all ${isFilterOpen && "max-md:hidden"} duration-300 max-md:max-w-full max-w-[400px] w-full max-md:mb-20`} >
+                    <div className={`w-full px-4 enter_from_left transition-all duration-300`} >
                         <CartSection />
                         <Bike />
                         <Price />
@@ -25,7 +31,7 @@ const FilterProducts = () => {
                         <FilterReset />
                     </div>
                 </div>
-                <div className="flex-[0.75] max-md:flex-1" >
+                <div className="flex-[0.75] max-md:flex-1 transition-all duration-300" >
                     <div>
                         <h2 className="text-5xl font-bold font-[Teko] px-4 max-[1200px]:text-4xl max-md:text-2xl" >ROAD BIKE</h2>
                         <div className="w-full flex items-center justify-between px-4" >
