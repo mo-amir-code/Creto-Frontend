@@ -31,7 +31,7 @@ const ProductCard = ({image, title, price, frameSize, classs, nos, type, cr}:Pro
                 <p className="text-lg font-bold leading-6 max-w-[170px] cursor-pointer hover:text-primary-color transition-all duration-200" >{title}</p>
             </div>
             <div className="pt-4 px-3" >
-                <button className="btn text-base mt-3 border-2 font-semibold border-primary-color relative" >
+                <button className="btn hover:shadow-lg text-base mt-3 border-2 font-semibold border-primary-color relative" >
                     BUY NOW
                 </button>
             </div>

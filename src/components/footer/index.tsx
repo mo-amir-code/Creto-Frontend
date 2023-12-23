@@ -8,8 +8,8 @@ const Footer = () => {
                     <h2 className="text-xl font-bold w-full max-sm:text-lg " >SUBSCRIBE</h2>
                     <p className="w-full text-xl max-sm:text-lg max-sm:leading-5 leading-6" >Subscribe us and you won't miss the new arrivals, as well as discounts and sales.</p>
                     <form className="w-full flex max-w-xl items-center max-sm:flex-col gap-4 justify-center" >
-                        <input type="text" placeholder="@ E-mail" className="py-3 px-4 outline-none flex-grow font-bold w-full bg-white border-2 border-secondary-color_3" />
-                        <button className="px-8 py-2 text-lg font-semibold border-2 border-primary-color text-secondary-color" >SEND</button>
+                        <input type="text" placeholder="@ E-mail" className="py-3 px-4 outline-none hover:shadow-lg duration-200 transition-all focus:shadow-lg flex-grow font-bold w-full bg-white border-2 border-secondary-color_3" />
+                        <button className="px-8 py-2 text-lg font-semibold border-2 hover:shadow-lg duration-200 transition-all border-primary-color text-secondary-color" >SEND</button>
                     </form>
                     <div className="py-6" >
                         <h4 className=" text-xl font-medium tracking-widest" >STAY IN TOUCH</h4>

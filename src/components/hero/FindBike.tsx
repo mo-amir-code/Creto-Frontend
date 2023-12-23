@@ -31,7 +31,7 @@ const FindBike = () => {
                         <h5 className="font-bold text-base min-w-[200px] max-sm:text-sm max-sm:min-w-[100px] w-full flex items-center justify-between gap-6" >{selectedBrand.name} <ChevronDownIcon className={`w-6 h-6 ${isBrand ? 'rotate-180' : 'rotate-0'} transition-all duration-200`} /></h5>
                         <DropDown list={dropdownBranddata} isFilter={false} open={isBrand} setSelected={setSelectedBrand} />
                     </div>
-                    <div className="px-6 text-black cursor-pointer py-3 min-w-[200px] max-sm:min-w-[100px] flex-1 flex items-center justify-center border-2 tracking-widest font-bold border-primary-color" >
+                    <div className="px-6 text-black cursor-pointer hover:shadow-lg duration-200 transition-all py-3 min-w-[200px] max-sm:min-w-[100px] flex-1 flex items-center justify-center border-2 tracking-widest font-bold border-primary-color" >
                         <button>SEARCH</button>
                     </div>
                 </form>
