@@ -33,7 +33,15 @@ const Routes = () => {
             path:"p/:productId",
             element:<ProductDetailsPage />
           },
+          {
+            path:"*",
+            element:<_404Page />
+          },
         ]
+    },
+    {
+      path: "*",
+      element:<_404Page />
     }
   ])
 
@@ -46,6 +54,7 @@ const HomePage =  Loadable(lazy(()=>import("../pages/HomePage")));
 const ShopPage =  Loadable(lazy(()=>import("../pages/ShopPage")));
 const ContactPage =  Loadable(lazy(()=>import("../pages/ContactPage")));
 const ProductDetailsPage =  Loadable(lazy(()=>import("../pages/ProductDetails")));
+const _404Page =  Loadable(lazy(()=>import("../components/_404")));
 
 
 
