@@ -22,7 +22,7 @@ const CartItem = () => {
                 <div className="w-[250px] max-md:w-full h-[300px] rounded-lg overflow-hidden shadow-lg group-hover:-translate-y-1 smooth_transition" >
                     <img src={img} alt="" className="h-full w-full object-cover" />
                 </div>
-                <div className="flex-grow max-md:space-y-4" >
+                <div className="flex-grow max-md:space-y-2" >
                     <div className="w-full text-secondary-color flex justify-between px-4 max-md:px-2" >
                         {/* Product details */}
                         <div className="flex flex-col justify-between items-start" >
