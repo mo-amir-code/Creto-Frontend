@@ -5,7 +5,7 @@ const CartItems = () => {
 
 
     return (
-        <div className="flex-[0.65] w-full mx-2 px-4 rounded-lg shadow-lg py-4 space-y-4" >
+        <div className="flex-[0.65] w-full mx-2 max-md:mx-0 px-4 rounded-lg shadow-lg py-4 space-y-4" >
             <CartItem />
             <CartItem />
             <CartItem />
@@ -23,7 +23,7 @@ const CartItem = () => {
                     <img src={img} alt="" className="h-full w-full object-cover" />
                 </div>
                 <div className="flex-grow max-md:space-y-4" >
-                    <div className="w-full text-secondary-color flex justify-between px-4" >
+                    <div className="w-full text-secondary-color flex justify-between px-4 max-md:px-2" >
                         {/* Product details */}
                         <div className="flex flex-col justify-between items-start" >
                             <div>
