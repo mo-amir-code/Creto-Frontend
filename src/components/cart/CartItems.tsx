@@ -18,11 +18,11 @@ const CartItem = () => {
 
     return (
         <div className="w-full group" >
-            <div className="flex border-b border-secondary-color py-4 max-md:flex-col max-md:gap-6" >
+            <div className="flex border-b border-secondary-color py-4 max-md:flex-col max-md:gap-6 max-md:px-4" >
                 <div className="w-[250px] max-md:w-full h-[300px] rounded-lg overflow-hidden shadow-lg group-hover:-translate-y-1 smooth_transition" >
                     <img src={img} alt="" className="h-full w-full object-cover" />
                 </div>
-                <div className="flex-grow text-secondary-color flex justify-between px-4" >
+                <div className="flex-grow text-secondary-color flex justify-between px-4 max-md:px-0" >
                     {/* Product details */}
                     <div className="flex flex-col justify-between items-start max-md:gap-4" >
                         <div>
