@@ -43,6 +43,10 @@ const CartItem = () => {
 
                     {/* Product Cost, Quantity */}
                     <div className="flex flex-col items-end space-y-4" >
+                        <div>
+                            <h3 className="text-base font-medium text-secondary-color text-end max-sm:text-sm" >Total</h3>
+                            <h3 className="text-base font-medium text-secondary-color max-sm:text-sm" >$39.99</h3>
+                        </div>
                         <div className="space-y-1" >
                             <h3 className="text-base font-medium text-secondary-color text-end max-sm:text-sm" >Quantity:</h3>
                             <div className="text-secondary-color_3 " >
@@ -52,10 +56,6 @@ const CartItem = () => {
                                     <button className="h-10 w-10 flex items-center justify-center cursor-pointer hover:text-primary-color duration-200 transition-all" >+</button>
                                 </span>
                             </div>
-                        </div>
-                        <div>
-                            <h3 className="text-base font-medium text-secondary-color text-end max-sm:text-sm" >Total</h3>
-                            <h3 className="text-base font-medium text-secondary-color max-sm:text-sm" >$39.99</h3>
                         </div>
                     </div>
                 </div>
