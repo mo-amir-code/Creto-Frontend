@@ -8,6 +8,9 @@
   .btn{
     @apply px-8 py-2
   }
+  .smooth_transition{
+    @apply transition-all duration-200 cursor-pointer
+  }
 }
 
 /* body{

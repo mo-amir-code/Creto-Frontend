@@ -8,11 +8,14 @@ const Hero = () => {
         speed: 500,
         slidesToShow: 1,
         slidesToScroll: 1,
+        autoplay:true
       };
 
   return (
     <div className="w-full relative max-w-6xl mx-auto" >
         <Slider {...settings} >
+            <HeroCarousel/>
+            <HeroCarousel/>
             <HeroCarousel/>
         </Slider>
         <FindBike />

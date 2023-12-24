@@ -2,6 +2,8 @@ import hero_bike from "../../assets/hero/hero_bike.png"
 import Button from "../buttons/Button"
 
 const HeroCarousel = () => {
+  
+
   return (
     <div className="h-[600px] flex justify-center relative px-2" >
       <XAnimation />

@@ -2,7 +2,7 @@ import advantage from "../../assets/advantages/advantages_bike.jpg"
 
 const Subscribe = () => {
     return (
-        <div className="w-full h-[600px] border-t border-secondary-color_3 relative font-[Teko] text-white overflow-hidden" >
+        <div className="w-full h-[600px] relative font-[Teko] text-white overflow-hidden" >
             <img src={advantage} alt="advantages" className="object-cover object-center w-full h-full" />
             <div className="w-full h-full absolute top-0 left-0 bg-secondary-color/90" >
                 <div className="mt-48 max-w-6xl mx-auto space-y-2" >

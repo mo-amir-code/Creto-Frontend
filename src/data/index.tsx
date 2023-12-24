@@ -38,7 +38,7 @@ export const navbarData = [
     },
     {
         name:"CART",
-        path:"/cart"
+        path:"/user/cart"
     },
 ]
 

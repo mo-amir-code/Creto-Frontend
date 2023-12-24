@@ -7,9 +7,9 @@ const ContactForm = () => {
             <h2 className="font-[Teko] text-4xl font-bold text-secondary-color" >CONTACT US</h2>
             <form className="w-full space-y-8 pb-12" >
                 <div className="flex items-center justify-center w-full gap-6 max-md:flex-col" >
-                    <ContactInputField placeHolder={"Name"} icon={"user"} />
-                    <ContactInputField placeHolder={"Phone"} icon={"phone"} />
-                    <ContactInputField placeHolder={"E-Mail"} icon={"email"} />
+                    <ContactInputField placeHolder={"Name"} type={"text"} icon={"user"} />
+                    <ContactInputField placeHolder={"Phone"} type={"text"} icon={"phone"} />
+                    <ContactInputField placeHolder={"E-Mail"} type={"email"} icon={"email"} />
                 </div>
                 <div className="flex items-start justify-center gap-2 p-3 text-secondary-color_3 border-2 border-secondary-color_3 hover:border-primary-color hover:shadow-lg shadow-primary-color on_focus transition-all duration-200" >
                         <ChatBubbleOvalLeftEllipsisIcon className="w-5 h-5" />
@@ -23,7 +23,7 @@ const ContactForm = () => {
     )
 }
 
-const ContactInputField = ({placeHolder, icon}:{placeHolder:string, icon:string}) => {
+const ContactInputField = ({placeHolder, icon, type}:{placeHolder:string, icon:string, type:string}) => {
     return (
         <div className="font-[Teko] w-full cursor-pointer flex-1 text-xl py-3 gap-2 border-2 border-secondary-color_3 px-2 hover:border-primary-color hover:shadow-lg shadow-primary-color on_focus transition-all duration-200 text-secondary-color_3 flex items-center justify-start" >
             {(():any=>{
@@ -38,7 +38,7 @@ const ContactInputField = ({placeHolder, icon}:{placeHolder:string, icon:string}
                         console.log("something went wrong")
                 }
             })()}
-            <input type="text" className="text-base font-normal outline-none group" placeholder={placeHolder} />
+            <input type={type} className="text-base font-normal outline-none group" placeholder={placeHolder} />
         </div>
     )
 }

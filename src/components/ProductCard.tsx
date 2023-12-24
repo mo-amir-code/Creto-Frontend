@@ -1,4 +1,5 @@
 import { ArrowPathIcon, HeartIcon } from "@heroicons/react/24/solid"
+import { Link } from "react-router-dom"
 
 interface ProductCardType{
     _id:Number,
@@ -15,7 +16,7 @@ interface ProductCardType{
 
 const ProductCard = ({image, title, price, frameSize, classs, nos, type, cr}:ProductCardType) => {
     return (
-        <div className="min-w-[250px] hover:shadow-lg transition-all duration-200 group px-2 py-6 bg-white shadow-md flex-col justify-center items-center relative" >
+        <Link to={`/p/12`} className="min-w-[250px] hover:shadow-lg transition-all duration-200 group px-2 py-6 bg-white shadow-md flex-col justify-center items-center relative" >
             <div className="max-w-[250px] flex items-center justify-center cursor-pointer" >
                 <img src={image} alt={title} />
             </div>
@@ -44,7 +45,7 @@ const ProductCard = ({image, title, price, frameSize, classs, nos, type, cr}:Pro
                 <p>Type: {type}</p>
                 <p>Company registration: {cr}</p>
             </div>
-        </div>
+        </Link>
     )
 }
 
