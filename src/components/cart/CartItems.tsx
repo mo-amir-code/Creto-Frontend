@@ -56,7 +56,7 @@ const CartItem = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="flex px-4 items-center justify-start gap-2 flex-wrap" >
+                    <div className="flex px-4 max-md:px-2 items-center justify-start gap-2 flex-wrap" >
                         <button className=" px-5 py-2 bg-primary-color rounded-lg hover:-translate-y-2 shadow-lg smooth_transition flex items-center justify-center gap-1 text-secondary-color font-[Teko] font-semibold" ><TrashIcon className="w-4 h-4" /><span className="pt-1" >REMOVE</span></button>
                         <button className=" px-5 py-2 rounded-lg smooth_transition flex items-center justify-center gap-1 text-secondary-color font-[Teko] font-semibold" ><HeartIconSolid className="w-4 h-4 text-red-600" /><span className="pt-1" >WISHLIST</span></button>
                     </div>
