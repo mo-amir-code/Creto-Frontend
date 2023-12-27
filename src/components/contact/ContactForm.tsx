@@ -1,4 +1,4 @@
-import { ChatBubbleOvalLeftEllipsisIcon, EnvelopeIcon, PhoneIcon, UserIcon } from "@heroicons/react/24/solid"
+import { ChatBubbleOvalLeftEllipsisIcon, EnvelopeIcon, LockClosedIcon, PhoneIcon, UserCircleIcon, UserIcon } from "@heroicons/react/24/solid"
 
 
 const ContactForm = () => {
@@ -23,7 +23,7 @@ const ContactForm = () => {
     )
 }
 
-const ContactInputField = ({placeHolder, icon, type}:{placeHolder:string, icon:string, type:string}) => {
+export const ContactInputField = ({placeHolder, icon, type}:{placeHolder:string, icon:string, type:string}) => {
     return (
         <div className="font-[Teko] w-full cursor-pointer flex-1 text-xl py-3 gap-2 border-2 border-secondary-color_3 px-2 hover:border-primary-color hover:shadow-lg shadow-primary-color on_focus transition-all duration-200 text-secondary-color_3 flex items-center justify-start" >
             {(():any=>{
@@ -34,6 +34,10 @@ const ContactInputField = ({placeHolder, icon, type}:{placeHolder:string, icon:s
                         return <PhoneIcon className="w-5 h-5" />
                     case "email":
                         return <EnvelopeIcon className="w-5 h-5" />
+                    case "password":
+                        return <LockClosedIcon className="w-5 h-5" />
+                    case "name":
+                        return <UserCircleIcon className="w-5 h-5" />
                     default:
                         console.log("something went wrong")
                 }
