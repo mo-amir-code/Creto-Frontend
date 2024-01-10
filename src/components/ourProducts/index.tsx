@@ -4,6 +4,7 @@ import ProductCard from "../ProductCard";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { getAllProductsAsync, getTopSellProductsAsync } from "../../redux/product/productAsyncThunk";
 import { selectProducts } from "../../redux/product/productSlice";
+import Loader from "../Loader";
 
 interface PType {
     name: string,
@@ -28,7 +29,7 @@ const OurProducts = () => {
         setPType({ ...pType, selected: type })
     }
 
-    useEffect(()=>{
+    useEffect(() => {
         dispatch(getAllProductsAsync());
         dispatch(getTopSellProductsAsync())
     }, [])
@@ -43,11 +44,15 @@ const OurProducts = () => {
                     ))
                 }
             </div>
-            <div className="flex items-center flex-wrap gap-4 py-12 px-4" >
+            <div className="flex items-center justify-center flex-wrap gap-4 py-12 px-4" >
                 {
-                    products?.data?.map((product) => (
+                    products?.status !== "pending" ? products?.data?.map((product) => (
                         <ProductCard key={product._id} {...product} />
                     ))
+                        :
+                        <div className="w-full h-[50vh]" >
+                            <Loader />
+                        </div>
                 }
             </div>
         </div>

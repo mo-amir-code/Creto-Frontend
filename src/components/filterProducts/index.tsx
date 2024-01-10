@@ -13,6 +13,7 @@ import { selectFilterProducts } from "../../redux/product/productSlice";
 import { getAllProductsAsync, searchByQueryAsync } from "../../redux/product/productAsyncThunk";
 import { useSearchParams } from "react-router-dom";
 import NoData from "../NoData";
+import Loader from "../Loader";
 // import { ProductType } from "../componentsTypes";
 
 // const getColors = ({products}:{products:ProductType[]}) => {
@@ -80,7 +81,7 @@ const FilterProducts = () => {
                     <div>
                         <h2 className="text-5xl font-bold font-[Teko] px-4 max-[1200px]:text-4xl max-md:text-2xl" >ROAD BIKE</h2>
                         <div className="w-full flex items-center justify-between px-4" >
-                            <p className="text-lg font-normal text-secondary-color_3 max-md:text-sm" >120 products found</p>
+                            <p className="text-lg font-normal text-secondary-color_3 max-md:text-sm" >{products?.totalCount} products found</p>
                             <div className="flex items-center justify-end" >
                                 <div className="text-xl max-md:text-base space-x-2 font-normal text-secondary-color/60 relative font-[Teko] flex items-center" ><span>Sort By:</span><div className="font-bold text-secondary-color cursor-pointer flex items-center justify-center" onClick={() => setIsSortByOpen(!isSortByOpen)} >
                                     {sortBy}
@@ -91,9 +92,11 @@ const FilterProducts = () => {
                         </div>
                         <div className="flex justify-center w-full flex-wrap gap-4 py-12 px-4" >
                             {
-                                products?.data?.length > 0 ? products?.data?.map((product) => (
+                                products?.data?.length > 0 ? products?.status !== "pending"? products?.data?.map((product) => (
                                     <ProductCard key={product._id} {...product} />
-                                ))
+                                )) : <div className="w-full h-[50vh]" >
+                                    <Loader />
+                                </div>
                                 :
                                 <NoData subline="Products Not Found" />
                             }
