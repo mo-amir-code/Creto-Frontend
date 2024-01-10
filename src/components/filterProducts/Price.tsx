@@ -1,21 +1,50 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { MAX_VALUE } from "../../constants";
+import { useSearchParams } from "react-router-dom";
 
 
 const Price = () => {
     const [minValue, setMinValue] = useState<number>(0);
     const [maxValue, setMaxValue] = useState<number>(MAX_VALUE);
+    const [minTimedOut, setMinTimedOut] = useState<any>(null)
+    const [maxTimedOut, setMaxTimedOut] = useState<any>(null)
+    const [searchParams, setSearchParams] = useSearchParams();
 
     const handleOnMinValueChange = (value: any) => {
         if (maxValue > parseInt(value)) {
             setMinValue(parseFloat(value));
         }
+
+        clearTimeout(minTimedOut);
+        setMinTimedOut(setTimeout(() => {
+            searchParams.set("minPrice", value);
+            setSearchParams(searchParams);
+        }, 500))
     }
+
+
     const handleOnMaxValueChange = (value: any) => {
         if (parseInt(value) > minValue) {
             setMaxValue(parseFloat(value));
         }
+
+        clearTimeout(maxTimedOut);
+        setMaxTimedOut(setTimeout(() => {
+            searchParams.set("maxPrice", value);
+            setSearchParams(searchParams);
+        }, 500))
     }
+
+    useEffect(() => {
+        const minVal = searchParams.get("minPrice");
+        const maxVal = searchParams.get("maxPrice");
+        if (minVal) {
+            setMinValue(parseInt(minVal));
+        }
+        if (maxVal) {
+            setMaxValue(parseInt(maxVal));
+        }
+    }, [])
 
     return (
         <div className="w-full space-y-8 mb-16" >

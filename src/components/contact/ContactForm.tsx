@@ -1,15 +1,32 @@
 import { ChatBubbleOvalLeftEllipsisIcon, EnvelopeIcon, LockClosedIcon, PhoneIcon, UserCircleIcon, UserIcon } from "@heroicons/react/24/solid"
+import { useForm } from "react-hook-form";
 
+export interface ContactFormType{
+    user:string,
+    phone:string,
+    email:string,
+}
 
 const ContactForm = () => {
+
+    const {
+        register,
+        handleSubmit,
+    } = useForm<FormData>();
+
+    const handleOnSubmit = (data: ContactFormType) => {
+        console.log(data)
+    }
+
+
     return (
         <div className="max-w-6xl w-full mx-auto px-4 space-y-8 flex flex-col items-center justify-center" >
             <h2 className="font-[Teko] text-4xl font-bold text-secondary-color" >CONTACT US</h2>
-            <form className="w-full space-y-8 pb-12" >
+            <form onSubmit={handleSubmit((data: any) => { handleOnSubmit(data) })} className="w-full space-y-8 pb-12" >
                 <div className="flex items-center justify-center w-full gap-6 max-md:flex-col" >
-                    <ContactInputField placeHolder={"Name"} type={"text"} icon={"user"} />
-                    <ContactInputField placeHolder={"Phone"} type={"text"} icon={"phone"} />
-                    <ContactInputField placeHolder={"E-Mail"} type={"email"} icon={"email"} />
+                    <ContactInputField register={register} placeHolder={"Name"} type={"text"} icon={"user"} />
+                    <ContactInputField register={register} placeHolder={"Phone"} type={"text"} icon={"phone"} />
+                    <ContactInputField register={register} placeHolder={"E-Mail"} type={"email"} icon={"email"} />
                 </div>
                 <div className="flex items-start justify-center gap-2 p-3 text-secondary-color_3 border-2 border-secondary-color_3 hover:border-primary-color hover:shadow-lg shadow-primary-color on_focus transition-all duration-200" >
                         <ChatBubbleOvalLeftEllipsisIcon className="w-5 h-5" />
@@ -23,7 +40,7 @@ const ContactForm = () => {
     )
 }
 
-export const ContactInputField = ({placeHolder, icon, type}:{placeHolder:string, icon:string, type:string}) => {
+export const ContactInputField = ({placeHolder, icon, type, register}:{placeHolder:string, icon:string, type:string, register?:any}) => {
     return (
         <div className="font-[Teko] w-full cursor-pointer flex-1 text-xl py-3 gap-2 border-2 border-secondary-color_3 px-2 hover:border-primary-color hover:shadow-lg shadow-primary-color on_focus transition-all duration-200 text-secondary-color_3 flex items-center justify-start" >
             {(():any=>{
@@ -36,13 +53,15 @@ export const ContactInputField = ({placeHolder, icon, type}:{placeHolder:string,
                         return <EnvelopeIcon className="w-5 h-5" />
                     case "password":
                         return <LockClosedIcon className="w-5 h-5" />
+                    case "confirmPassword":
+                        return <LockClosedIcon className="w-5 h-5" />
                     case "name":
                         return <UserCircleIcon className="w-5 h-5" />
                     default:
                         console.log("something went wrong")
                 }
             })()}
-            <input type={type} className="text-base font-normal outline-none group" placeholder={placeHolder} />
+            <input type={type} {...register(icon, {required:true})} className="text-base font-normal outline-none group w-full" placeholder={placeHolder} />
         </div>
     )
 }

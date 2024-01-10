@@ -3,6 +3,8 @@ import PageScreen from "../components/pageScreen"
 
 
 const ShopPage = () => {
+
+  
   return (
     <div className="w-full" >
         <PageScreen/>

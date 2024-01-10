@@ -38,12 +38,22 @@ const Routes = () => {
             element:<CartPage />
           },
           {
-            path:"auth/signin",
-            element:<SignInPage />
-          },
-          {
-            path:"auth/signup",
-            element:<SignUpPage />
+            path:"auth",
+            element:<AuthLayout />,
+            children:[
+              {
+                path:"signin",
+                element:<SignInPage />
+              },
+              {
+                path:"signup",
+                element:<SignUpPage />
+              },
+              {
+                path:"verify",
+                element:<VerifyPage />
+              },
+            ]
           },
           {
             path:"*",
@@ -62,6 +72,7 @@ const Routes = () => {
 }
 
 const HomeLayout = Loadable(lazy(()=>import("../layouts/HomeLayout")));
+const AuthLayout = Loadable(lazy(()=>import("../layouts/AuthLayout")));
 const HomePage =  Loadable(lazy(()=>import("../pages/HomePage")));
 const ShopPage =  Loadable(lazy(()=>import("../pages/ShopPage")));
 const ContactPage =  Loadable(lazy(()=>import("../pages/ContactPage")));
@@ -69,6 +80,7 @@ const ProductDetailsPage =  Loadable(lazy(()=>import("../pages/ProductDetails"))
 const CartPage =  Loadable(lazy(()=>import("../pages/CartPage")));
 const SignInPage =  Loadable(lazy(()=>import("../pages/SigninPage")));
 const SignUpPage =  Loadable(lazy(()=>import("../pages/SignupPage")));
+const VerifyPage =  Loadable(lazy(()=>import("../pages/VerifyPage")));
 const _404Page =  Loadable(lazy(()=>import("../components/_404")));
 
 

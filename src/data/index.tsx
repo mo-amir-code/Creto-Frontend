@@ -21,346 +21,329 @@ import location from "../assets/contact/location.svg";
 
 export const navbarData = [
     {
-        name:"HOME",
-        path:"/"
+        name: "HOME",
+        path: "/"
     },
     {
-        name:"SHOP",
-        path:"/shop"
+        name: "SHOP",
+        path: "/shop"
     },
     {
-        name:"CONTACTS",
-        path:"/contact"
+        name: "CONTACTS",
+        path: "/contact"
     },
     {
-        name:"PROFILE",
-        path:"/profile"
+        name: "PROFILE",
+        path: "/profile"
     },
     {
-        name:"CART",
-        path:"/user/cart"
+        name: "CART",
+        path: "/user/cart"
+    },
+    {
+        name: "LOG OUT",
+        path: "logout"
     },
 ]
 
 export const dropdownTypedata = [
     {
-        name:"Mountain Bike",
-        value:"Mountain Bike"
+        name: "Mountain Bike",
+        value: "Mountain Bike"
     },
     {
-        name:"Hybrid/Comfort Bike",
-        value:"Hybrid/Comfort Bike"
+        name: "Hybrid/Comfort Bike",
+        value: "Hybrid/Comfort Bike"
     },
     {
-        name:"Cyclocross Bike",
-        value:"Cyclocross Bike"
+        name: "Cyclocross Bike",
+        value: "Cyclocross Bike"
     },
     {
-        name:"BMX/Trick Bike",
-        value:"BMX/Trick Bike"
+        name: "BMX/Trick Bike",
+        value: "BMX/Trick Bike"
     },
     {
-        name:"Road Bike",
-        value:"Road Bike"
+        name: "Road Bike",
+        value: "Road Bike"
     },
     {
-        name:"Track Bike",
-        value:"Track Bike"
+        name: "Track Bike",
+        value: "Track Bike"
     },
 ]
 
 export const dropdownSizedata = [
     {
-        name:20,
-        value:20
+        name: 20,
+        value: 20
     },
     {
-        name:24,
-        value:24
+        name: 24,
+        value: 24
     },
     {
-        name:26,
-        value:26
+        name: 26,
+        value: 26
     },
     {
-        name:27,
-        value:27
+        name: 27,
+        value: 27
     },
     {
-        name:28,
-        value:28
+        name: 28,
+        value: 28
     },
     {
-        name:30,
-        value:30
+        name: 30,
+        value: 30
     },
 ]
 
 export const dropdownBranddata = [
     {
-        name:"Abcsd",
-        value:"Abcsd"
+        name: "Abcsd",
+        value: "Abcsd"
     },
     {
-        name:"Bcgds",
-        value:"Bcgds"
+        name: "Bcgds",
+        value: "Bcgds"
     },
     {
-        name:"Cdjhs",
-        value:"Cdjhs"
+        name: "Cdjhs",
+        value: "Cdjhs"
     },
     {
-        name:"Dskjd",
-        value:"Dskjd"
+        name: "Dskjd",
+        value: "Dskjd"
     },
     {
-        name:"Efdgf",
-        value:"Efdgf"
+        name: "Efdgf",
+        value: "Efdgf"
     },
     {
-        name:"Fsadkj",
-        value:"Fsadkj"
+        name: "Fsadkj",
+        value: "Fsadkj"
     },
 ]
 
 export const advantages = [
     {
-        name:"Free shipping from $500",
-        image:shipping,
+        name: "Free shipping from $500",
+        image: shipping,
     },
     {
-        name:"Warranty service for 3 months",
-        image:gear,
+        name: "Warranty service for 3 months",
+        image: gear,
     },
     {
-        name:"Exchange and return within 14 days",
-        image:wallet,
+        name: "Exchange and return within 14 days",
+        image: wallet,
     },
     {
-        name:"Discounts for customers",
-        image:discount,
+        name: "Discounts for customers",
+        image: discount,
     }
 ]
 
 export const productsType = [
     {
-        name:"All"
+        name: "All"
     },
     {
-        name:"Road bike"
+        name: "Road bike"
     },
     {
-        name:"City bike"
+        name: "City bike"
     },
     {
-        name:"BMX bike"
+        name: "BMX bike"
     },
 ]
 
 export const productCardsData = [
     {
-        _id:1,
-        image:bike_1,
-        price:12,
-        discount:10,
-        title:'Granite Peak 24" Girls Mountain Bike',
-        frameSize:17,
-        classs:"City",
-        nos:7,
-        type:"Rigid",
-        cr:"INDIA"
+        _id: 1,
+        image: bike_1,
+        price: 12,
+        discount: 10,
+        title: 'Granite Peak 24" Girls Mountain Bike',
+        frameSize: 17,
+        classs: "City",
+        nos: 7,
+        type: "Rigid",
+        cr: "INDIA"
     },
     {
-        _id:2,
-        image:bike_2,
-        price:12,
-        discount:10,
-        title:'Granite Peak 24" Girls Mountain Bike',
-        frameSize:17,
-        classs:"City",
-        nos:7,
-        type:"Rigid",
-        cr:"INDIA"
+        _id: 2,
+        image: bike_2,
+        price: 12,
+        discount: 10,
+        title: 'Granite Peak 24" Girls Mountain Bike',
+        frameSize: 17,
+        classs: "City",
+        nos: 7,
+        type: "Rigid",
+        cr: "INDIA"
     },
     {
-        _id:3,
-        image:bike_3,
-        price:12,
-        discount:10,
-        title:'Granite Peak 24" Girls Mountain Bike',
-        frameSize:17,
-        classs:"City",
-        nos:7,
-        type:"Rigid",
-        cr:"INDIA"
+        _id: 3,
+        image: bike_3,
+        price: 12,
+        discount: 10,
+        title: 'Granite Peak 24" Girls Mountain Bike',
+        frameSize: 17,
+        classs: "City",
+        nos: 7,
+        type: "Rigid",
+        cr: "INDIA"
     },
     {
-        _id:4,
-        image:bike_4,
-        price:12,
-        discount:10,
-        title:'Granite Peak 24" Girls Mountain Bike',
-        frameSize:17,
-        classs:"City",
-        nos:7,
-        type:"Rigid",
-        cr:"INDIA"
+        _id: 4,
+        image: bike_4,
+        price: 12,
+        discount: 10,
+        title: 'Granite Peak 24" Girls Mountain Bike',
+        frameSize: 17,
+        classs: "City",
+        nos: 7,
+        type: "Rigid",
+        cr: "INDIA"
     },
     {
-        _id:5,
-        image:bike_5,
-        price:12,
-        discount:10,
-        title:'Granite Peak 24" Girls Mountain Bike',
-        frameSize:17,
-        classs:"City",
-        nos:7,
-        type:"Rigid",
-        cr:"INDIA"
+        _id: 5,
+        image: bike_5,
+        price: 12,
+        discount: 10,
+        title: 'Granite Peak 24" Girls Mountain Bike',
+        frameSize: 17,
+        classs: "City",
+        nos: 7,
+        type: "Rigid",
+        cr: "INDIA"
     },
     {
-        _id:5,
-        image:bike_6,
-        price:12,
-        discount:10,
-        title:'Granite Peak 24" Girls Mountain Bike',
-        frameSize:17,
-        classs:"City",
-        nos:7,
-        type:"Rigid",
-        cr:"INDIA"
+        _id: 6,
+        image: bike_6,
+        price: 12,
+        discount: 10,
+        title: 'Granite Peak 24" Girls Mountain Bike',
+        frameSize: 17,
+        classs: "City",
+        nos: 7,
+        type: "Rigid",
+        cr: "INDIA"
     },
     {
-        _id:5,
-        image:bike_7,
-        price:12,
-        discount:10,
-        title:'Granite Peak 24" Girls Mountain Bike',
-        frameSize:17,
-        classs:"City",
-        nos:7,
-        type:"Rigid",
-        cr:"INDIA"
+        _id: 7,
+        image: bike_7,
+        price: 12,
+        discount: 10,
+        title: 'Granite Peak 24" Girls Mountain Bike',
+        frameSize: 17,
+        classs: "City",
+        nos: 7,
+        type: "Rigid",
+        cr: "INDIA"
     },
     {
-        _id:5,
-        image:bike_8,
-        price:12,
-        discount:10,
-        title:'Granite Peak 24" Girls Mountain Bike',
-        frameSize:17,
-        classs:"City",
-        nos:7,
-        type:"Rigid",
-        cr:"INDIA"
+        _id: 8,
+        image: bike_8,
+        price: 12,
+        discount: 10,
+        title: 'Granite Peak 24" Girls Mountain Bike',
+        frameSize: 17,
+        classs: "City",
+        nos: 7,
+        type: "Rigid",
+        cr: "INDIA"
     },
 ]
 
 export const labels = [
     {
-        _id:1,
-        lbl:label_1
+        _id: 1,
+        lbl: label_1
     },
     {
-        _id:2,
-        lbl:label_2
+        _id: 2,
+        lbl: label_2
     },
     {
-        _id:3,
-        lbl:label_3
+        _id: 3,
+        lbl: label_3
     },
     {
-        _id:4,
-        lbl:label_4
+        _id: 4,
+        lbl: label_4
     },
     {
-        _id:5,
-        lbl:label_5
+        _id: 5,
+        lbl: label_5
     },
 ]
 
 export const sortByData = [
     {
-        name:"Best Selling",
-        value:"Best Selling"
+        name: "New Product",
+        value: "new"
     },
     {
-        name:"New Product",
-        value:"New Product"
+        name: "Top Products",
+        value: "top"
     },
     {
-        name:"Sale Product",
-        value:"Sale Product"
+        name: "Lowest First",
+        value: "lowest"
+    },
+    {
+        name: "Highest First",
+        value: "highest"
     },
 ]
 
 export const typesOfBike = [
     {
         name: "Road Bike",
-        id:"road_bike",
+        id: "road_bike",
     },
     {
         name: "Mountain Bike",
-        id:"mountain_bike",
+        id: "mountain_bike",
     },
     {
         name: "BMX Bike",
-        id:"bmx_bike",
+        id: "bmx_bike",
     },
     {
         name: "City Bike",
-        id:"city_bike",
+        id: "city_bike",
     },
     {
         name: "Kids Bike",
-        id:"kids_bike",
+        id: "kids_bike",
     },
 ]
 
-export const colors = [
-    {
-        code:"#F3DECA",
-    },
-    {
-        code:"#FA9483",
-    },
-    {
-        code:"#2D4057",
-    },
-    {
-        code:"#4097AA",
-    },
-    {
-        code:"#0AC693",
-    },
-    {
-        code:"#0C5061",
-    },
-    {
-        code:"#F74440",
-    },
-    {
-        code:"#E0E44A",
-    },
-]
+export const colors = ["#eda6c2", "#debbdd", "#1dfaa0", "#84ec57", "dbb3f7", "#ec5d9e", "#f80c0d", "#dadce4"];
 
-export const contactLabels  = [
+export const contactLabels = [
     {
-        name:"need help",
-        icon:phone,
-        info1:"1-800-488-6040",
-        info2:"1-800-578-4090",
+        name: "need help",
+        icon: phone,
+        info1: "1-800-488-6040",
+        info2: "1-800-578-4090",
     },
     {
-        name:"questions",
-        icon:envelope,
-        info1:"mo.amir.code@gmail.com",
-        info2:"aamir.business.hub@gmail.com",
+        name: "questions",
+        icon: envelope,
+        info1: "mo.amir.code@gmail.com",
+        info2: "aamir.business.hub@gmail.com",
     },
     {
-        name:"address",
-        icon:location,
-        info1:"8500, Lorem Street,",
-        info2:"Chicago, IL, 55030",
+        name: "address",
+        icon: location,
+        info1: "8500, Lorem Street,",
+        info2: "Chicago, IL, 55030",
     },
 ]

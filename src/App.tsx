@@ -1,6 +1,21 @@
+import { useEffect } from "react"
 import Routes from "./routes"
+import { isAuth } from "./services"
+import { useAppDispatch} from "./redux/hooks"
 
 function App() {
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    const unsubscribe= isAuth();
+
+    return () => {
+      if (unsubscribe) {
+        unsubscribe();
+      }
+    }
+
+  }, [dispatch]);
 
   return (
     <>

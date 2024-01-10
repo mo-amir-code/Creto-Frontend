@@ -3,9 +3,12 @@ import logo from "../../assets/brand/creto_logo.svg"
 import { navbarData } from "../../data"
 import { Link } from "react-router-dom"
 import { OpenMenu } from "../../layouts/HomeLayout"
+import { useAppSelector } from "../../redux/hooks"
+import { selectCart } from "../../redux/product/productSlice"
 
 
-const Header = ({menuOpen, setMenuOpen}:{menuOpen:boolean, setMenuOpen:Function}) => {
+const Header = ({ menuOpen, setMenuOpen }: { menuOpen: boolean, setMenuOpen: Function }) => {
+    const cart = useAppSelector(selectCart)
 
     return (
         <header className="max-w-6xl mx-auto relative" >
@@ -40,10 +43,14 @@ const Header = ({menuOpen, setMenuOpen}:{menuOpen:boolean, setMenuOpen:Function}
                             6
                         </span>
                     </span>
-                    <span className="border-r cursor-pointer border-secondary-color_3 pr-2" >
-                        <UserIcon className="w-5 h-5 max-md:w-4 max-md:h-4 font-bold text-secondary-color_3" />
+                    <span className="relative border-r cursor-pointer border-secondary-color_3 pr-2" >
+                        <Link to={"/user/cart"}><ShoppingCartIcon className="w-5 max-md:w-4 max-md:h-4 cursor-pointer h-5 font-bold text-secondary-color_3" />
+                        {cart?.count>0 && <span className="absolute bottom-[45%] left-[40%] text-[0.6rem] bg-primary-color rounded-full w-4 h-4 text-center" >
+                            {cart?.count}
+                        </span>}
+                        </Link>
                     </span>
-                    <ShoppingCartIcon className="w-5 max-md:w-4 max-md:h-4 cursor-pointer h-5 font-bold text-secondary-color_3" />
+                    <UserIcon className="w-5 h-5 max-md:w-4 max-md:h-4 font-bold text-secondary-color_3 cursor-pointer" />
                 </div>
             </div>
             <div className="flex items-center max-md:justify-center max-md:py-2 justify-between px-2" >
@@ -53,7 +60,7 @@ const Header = ({menuOpen, setMenuOpen}:{menuOpen:boolean, setMenuOpen:Function}
                 <div className="flex items-center gap-5 max-md:hidden font-[Teko] text-lg font-extralight tracking-wider" >
                     {
                         navbarData.map((item, idx) => (
-                            <Link to={item.path} className="h-full py-4 relative group cursor-pointer" key={idx} >{item.name} <span className="absolute hidden group-hover:block nav_top_animation_in -top-[3%] rounded-lg left-auto right-auto h-[3px] bg-primary-color">{" "}</span></Link>
+                            <Link to={item.path} className={`h-full py-4 ${item.path === "logout" && "hidden"} relative group cursor-pointer`} key={idx} >{item.name} <span className="absolute hidden group-hover:block nav_top_animation_in -top-[3%] rounded-lg left-auto right-auto h-[3px] bg-primary-color">{" "}</span></Link>
                         ))
                     }
                 </div>

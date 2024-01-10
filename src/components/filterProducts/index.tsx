@@ -1,5 +1,6 @@
-import { useState } from "react"
-import { productCardsData, sortByData } from "../../data"
+import { useEffect, useState } from "react"
+import { sortByData } from "../../data"
+import { ITEM_PER_PAGE } from "../../constants";
 import ProductCard from "../ProductCard"
 import { DropDown } from "../hero/FindBike";
 import { ChevronDownIcon, ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/solid";
@@ -7,17 +8,61 @@ import Bike from "./Bike";
 import Price from "./Price";
 import Colors from "./Colors";
 import CartSection from "./Cart";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
+import { selectFilterProducts } from "../../redux/product/productSlice";
+import { getAllProductsAsync, searchByQueryAsync } from "../../redux/product/productAsyncThunk";
+import { useSearchParams } from "react-router-dom";
+import NoData from "../NoData";
+// import { ProductType } from "../componentsTypes";
 
+// const getColors = ({products}:{products:ProductType[]}) => {
+//     return products?.reduce((colors, curr) => {
+//         curr.colors.forEach((clr)=>{
+//             if(!colors.includes(clr)){
+//                 colors.push(clr);
+//             }
+//         })
+//         return colors;
+//     }, [] as string[]);
+// }
 
 const FilterProducts = () => {
     const [sortBy, setSortBy] = useState(sortByData[0].name);
     const [isSortByOpen, setIsSortByOpen] = useState<boolean>(false);
     const [isFilterOpen, setIsFilterOpen] = useState<boolean>(false);
+    const products = useAppSelector(selectFilterProducts);
+    const dispatch = useAppDispatch();
+    const [searchParams, setSearchParams] = useSearchParams();
+
+    useEffect(() => {
+        dispatch(searchByQueryAsync({ query: searchParams.toString() }));
+    }, [searchParams]);
+
+    useEffect(() => {
+        // const sortVal = searchParams.get('sortby');
+        // if(sortVal){
+        //     if(sortVal === "new" || sortVal === "top"){
+        //         setSortBy(`${sortVal.charAt(0).toUpperCase() + sortVal.slice(1, sortBy.length)} Products`);
+        //     }else if(sortVal === "lowest" || sortVal === "highest"){
+        //         setSortBy(`${sortVal.charAt(0).toUpperCase() + sortVal.slice(1, sortBy.length)} First`);
+        //     }else{
+        //         searchParams.set('sortby', sortBy.split(' ')[0].toLowerCase());
+        //         setSearchParams(searchParams);
+        //         setSortBy(sortByData[0].name);
+        //     }
+        // }
+        dispatch(getAllProductsAsync())
+    }, []);
+
+    useEffect(() => {
+        searchParams.set('sortby', sortBy.split(' ')[0].toLowerCase());
+        setSearchParams(searchParams);
+    }, [sortBy]);
 
     return (
         <div className="max-w-6xl w-full mx-auto py-20 text-secondary-color" >
             <div className="flex items-start max-md:flex-col max-md:gap-8 max-md:justify-start max-md:items-center w-full" >
-                <div onClick={()=>setIsFilterOpen(!isFilterOpen)} className="px-4 cursor-pointer w-full hidden max-md:block" >
+                <div onClick={() => setIsFilterOpen(!isFilterOpen)} className="px-4 cursor-pointer w-full hidden max-md:block" >
                     <div className="w-full py-3 border-2 border-primary-color text-xl flex font-medium font-[Teko] items-center justify-center" >
                         FILTER
                     </div>
@@ -27,8 +72,8 @@ const FilterProducts = () => {
                         <CartSection />
                         <Bike />
                         <Price />
-                        <Colors />
-                        <FilterReset />
+                        <Colors  />
+                        <FilterReset setSearchParams={setSearchParams} />
                     </div>
                 </div>
                 <div className="flex-[0.75] max-md:flex-1 transition-all duration-300" >
@@ -44,38 +89,78 @@ const FilterProducts = () => {
                                 </div></div>
                             </div>
                         </div>
-                        <div className="w-full justify-center flex items-center flex-wrap gap-4 py-12 px-4" >
+                        <div className="flex justify-center w-full flex-wrap gap-4 py-12 px-4" >
                             {
-                                productCardsData.map((card) => (
-                                    <ProductCard key={card._id} {...card} />
+                                products?.data?.length > 0 ? products?.data?.map((product) => (
+                                    <ProductCard key={product._id} {...product} />
                                 ))
+                                :
+                                <NoData subline="Products Not Found" />
                             }
                         </div>
                     </div>
-                    <Pagination />
+                    <Pagination totalPage={products.totalCount} searchParams={searchParams} setSearchParams={setSearchParams} />
                 </div>
             </div>
         </div>
     )
 }
 
-const FilterReset = () => {
+const FilterReset = ({ setSearchParams }: { setSearchParams: Function }) => {
+
+    const handleResetFilters = () => {
+        const newSearchParams = new URLSearchParams();
+        newSearchParams.set("page", "1");
+        newSearchParams.set("limit", "12");
+        newSearchParams.set("sortby", "new")
+        setSearchParams(newSearchParams);
+        window.location.reload();
+    }
+
     return (
         <div>
-            <h3 className="text-lg cursor-pointer font-normal" >Reset Filters</h3>
+            <h3 onClick={handleResetFilters} className="text-lg cursor-pointer font-normal" >Reset Filters</h3>
         </div>
     )
 }
 
-const Pagination = () => {
+const Pagination = ({totalPage, searchParams, setSearchParams}:{totalPage:number, searchParams:any, setSearchParams:Function}) => {
+    const [currentPage, setCurrentPage] = useState<number>(1);
+
+
+    const handlePage = (n:any) => {
+        setCurrentPage(n);
+        searchParams.set("page", n);
+        setSearchParams(searchParams)
+    }
+
+    useEffect(() => {
+        const currPage = searchParams.get("page");
+        const itemLimit = searchParams.get("limit");
+        if(currPage){
+            setCurrentPage(parseInt(currPage));
+        }else{
+            searchParams.set("page", 1);
+        }
+        if(!itemLimit){
+            searchParams.set("limit", ITEM_PER_PAGE)
+        }
+        setSearchParams(searchParams);
+    }, [searchParams])
+    
     return (
-        <div className="w-full flex items-center justify-center gap-3" >
-            <span className="w-10 h-10 flex items-center justify-center font-[Teko] font-bold border-2 border-secondary-color_3 cursor-pointer" ><ChevronLeftIcon className="w-4 h-4" /></span>
-            <span className="w-10 h-10 flex items-center justify-center font-[Teko] bg-primary-color font-bold border-2 border- cursor-pointersecondary-color_3" >1</span>
-            <span className="w-10 h-10 flex items-center justify-center font-[Teko] font-bold border-2 border-secondary-color_3 cursor-pointer" >2</span>
-            <span className="w-10 h-10 flex items-center justify-center font-[Teko] font-bold border-2 border-secondary-color_3 cursor-pointer" >3</span>
-            <span className="w-10 h-10 flex items-center justify-center font-[Teko] font-bold border-2 border-secondary-color_3 cursor-pointer" >4</span>
-            <span className="w-10 h-10 flex items-center justify-center font-[Teko] font-bold border-2 border-secondary-color_3 cursor-pointer" ><ChevronRightIcon className="w-4 h-4" /></span>
+        <div className="w-full flex items-center justify-center font-[Teko] gap-3" >
+            <span className="w-10 h-10 smooth_transition hover:shadow-lg hover:bg-primary-color flex items-center justify-center font-[Teko] font-bold border-2 border-secondary-color_3 cursor-pointer" ><ChevronLeftIcon className="w-4 h-4" /></span>
+            {
+                Array.from({ length: Math.ceil(totalPage/ITEM_PER_PAGE) }, (_, index) => index + 1).map((n) => {
+                    if(n <= 10){
+                        return <span key={n} onClick={()=>handlePage(n)} className={`w-10 h-10 ${currentPage === n && "bg-primary-color shadow-lg"} flex hover:shadow-lg items-center justify-center font-bold border-2 border-secondary-color_3 cursor-pointer smooth_transition`} >{n}</span>
+                    }else if(n == 11){
+                         return <span key={n} className={`w-10 h-10 flex hover:shadow-lg items-end justify-center font-bold cursor-pointer smooth_transition`} >...</span>
+                    }
+                  })
+            }
+            <span className="w-10 h-10 smooth_transition hover:shadow-lg hover:bg-primary-color flex items-center justify-center font-[Teko] font-bold border-2 border-secondary-color_3 cursor-pointer" ><ChevronRightIcon className="w-4 h-4" /></span>
         </div>
     )
 }

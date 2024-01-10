@@ -1,13 +1,43 @@
+import { useEffect } from "react";
 import CartBill from "../components/cart/CartBill"
 import CartItems from "../components/cart/CartItems"
+import { useAppDispatch, useAppSelector } from "../redux/hooks"
+import { selectIsLoggedIn, selectLoggedInUser } from "../redux/auth/authSlice";
+import { fetchCartDataAsync } from "../redux/product/productAsyncThunk";
+import { selectCart } from "../redux/product/productSlice";
+import Loader from "../components/Loader";
+import { CartDataType } from "../redux/product/productTypes";
 
 const CartPage = () => {
+  const dispatch = useAppDispatch();
+  const isLoggedIn = useAppSelector(selectIsLoggedIn);
+  const loggedInUser = useAppSelector(selectLoggedInUser);
+  const cart = useAppSelector(selectCart);
+  const subTotal = cart?.data?.reduce((total:number, current:CartDataType) => {
+    return total + current?.currentPrice;
+  }, 0);
+
+
+  useEffect(() => {
+    if (loggedInUser && isLoggedIn) {
+      dispatch(fetchCartDataAsync({ userId: loggedInUser?.userId }))
+    }
+  }, [])
+
+  if(cart.status === "pending") {
+    return (
+      <div className="w-full h-[80vh]" >
+      <Loader />
+      </div>
+    )
+  }
+
   return (
     <div className="max-w-6xl mx-auto w-full" >
-        <div className="w-full flex justify-center py-12 max-lg:flex-col max-lg:justify-start max-lg:gap-8" >
-            <CartItems />
-            <CartBill />
-        </div>
+      <div className="w-full flex justify-center py-12 max-lg:flex-col max-lg:justify-start max-lg:gap-8" >
+        <CartItems cart={cart?.data} />
+        <CartBill subTotal={subTotal} />
+      </div>
     </div>
   )
 }
