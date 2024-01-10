@@ -17,7 +17,7 @@ export const firstLetterCap = (str: string) => {
 };
 
 export const httpAxios = axios.create({
-  baseURL: "http://localhost:8000",
+  baseURL: import.meta.env.VITE_NODE_ENV === "development" ? "http://localhost:8000" : "https://creto-frontend-black.vercel.app",
 });
 
 export const isAuth = () => {
