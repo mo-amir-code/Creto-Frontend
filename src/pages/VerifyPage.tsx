@@ -1,20 +1,17 @@
-import { ChangeEvent, useState } from "react"
+import { useState } from "react"
 import { SubmitButton } from "./SigninPage"
 import { useAppDispatch } from "../redux/hooks";
 import { verifyUserAsync } from "../redux/auth/authAsyncThunk";
 import { toast } from "react-toastify";
-import { useSearchParams } from "react-router-dom";
 
 
 const VerifyPage = () => {
-  const [searchParams, setSearchParams] = useSearchParams();
   const [otp, setOtp] = useState<string>('');
   const dispatch = useAppDispatch();
-  const token = searchParams.get('token');
+  const token = (new URLSearchParams(window.location.search)).get('token');
 
   const handleOnChnage = (e:any) => {
     setOtp(e.target.value);
-    
   }
 
   const handleOnSubmit = (e:any) => {
