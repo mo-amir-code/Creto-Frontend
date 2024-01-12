@@ -4,10 +4,12 @@ import storage from 'redux-persist/lib/storage';
 import { persistReducer } from "redux-persist";
 import authSlice from "./auth/authSlice";
 import productSlice from "./product/productSlice";
+import promotionSlice from "./promotion/promotionSlice";
 
 const rootReducer = combineReducers({
     auth: authSlice,
-    product: productSlice
+    product: productSlice,
+    promotion: promotionSlice
 })
 
 

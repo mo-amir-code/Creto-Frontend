@@ -95,6 +95,7 @@
 }
 
 .hero_bike_ani{
+  animation-delay: 1000ms;
   animation: bike_ani 1s ease-in-out;
 }
 
