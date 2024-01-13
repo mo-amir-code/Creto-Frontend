@@ -3,7 +3,7 @@ import { CartDataType, CartItemObjectType } from "../../redux/product/productTyp
 import { useAppDispatch } from "../../redux/hooks"
 import { deleteCartAsync, editCartAsync } from "../../redux/product/productAsyncThunk"
 
-const CartItems = ({cart}:{cart:[CartDataType] | null}) => {
+const CartItems = ({cart}:{cart:[CartDataType] | []}) => {
     
 
     return (

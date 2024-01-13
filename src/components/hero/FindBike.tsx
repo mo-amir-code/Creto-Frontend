@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { dropdownTypedata, dropdownSizedata, dropdownBranddata } from "../../data"
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
+import { useNavigate } from "react-router-dom";
 
 
 const FindBike = () => {
@@ -10,12 +11,19 @@ const FindBike = () => {
     const [isTypeOpen, setIsTypeOpen] = useState(false)
     const [isBrand, setIsBrand] = useState(false)
     const [isWheelSize, setIsWheelSize] = useState(false)
+    const navigate = useNavigate();
+
+    const handleSearch = (e:any) => {
+        e.preventDefault();
+        navigate(`/shop?categories=${selectedType.value}&brand=${selectedBrand.value}`);
+    }
+
 
     return (
         <div className="absolute top-[90%] left-0 flex items-center justify-center w-full" >
             <div className="max-w-5xl max-[1200px]:max-w-4xl max-[940px]:max-w-2xl max-md:max-w-lg max-sm:max-w-xs max-[360px]:max-w-[260px] w-full bg-white shadow-md text-secondary-color py-12" >
                 <h2 className="text-center font-[Teko] font-bold text-5xl max-[1200px]:text-3xl max-sm:text-2xl" >FIND THE BIKE</h2>
-                <form className="px-8 flex items-center text-gray-500 gap-8 mt-14 flex-wrap" >
+                <form onSubmit={handleSearch} className="px-8 flex items-center text-gray-500 gap-8 mt-14 flex-wrap" >
                     {/* <div>
                         <p className="text-lg font-semibold text-secondary-color_3" >Type</p>
                     </div> */}
@@ -32,7 +40,7 @@ const FindBike = () => {
                         <DropDown list={dropdownBranddata} isFilter={false} open={isBrand} setSelected={setSelectedBrand} />
                     </div>
                     <div className="px-6 text-black cursor-pointer hover:shadow-lg duration-200 transition-all py-3 min-w-[200px] max-sm:min-w-[100px] flex-1 flex items-center justify-center border-2 tracking-widest font-bold border-primary-color" >
-                        <button>SEARCH</button>
+                        <button type="submit" >SEARCH</button>
                     </div>
                 </form>
             </div>

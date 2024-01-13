@@ -18,7 +18,7 @@ const Bike = () => {
     )
 }
 
-export default Bike
+export default Bike;
 
 export const CheckBox = ({ id, name }: { id: string, name: string }) => {
     const [searchParams, setSearchParams] = useSearchParams();

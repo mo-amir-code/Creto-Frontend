@@ -49,28 +49,24 @@ export const navbarData = [
 export const dropdownTypedata = [
     {
         name: "Mountain Bike",
-        value: "Mountain Bike"
-    },
-    {
-        name: "Hybrid/Comfort Bike",
-        value: "Hybrid/Comfort Bike"
-    },
-    {
-        name: "Cyclocross Bike",
-        value: "Cyclocross Bike"
-    },
-    {
-        name: "BMX/Trick Bike",
-        value: "BMX/Trick Bike"
+        value: "mountain"
     },
     {
         name: "Road Bike",
-        value: "Road Bike"
+        value: "road"
     },
     {
-        name: "Track Bike",
-        value: "Track Bike"
+        name: "BMX Bike",
+        value: "bmx"
     },
+    {
+        name: "City Bike",
+        value: "city"
+    },
+    {
+        name: "Kids Bike",
+        value: "kids"
+    }
 ]
 
 export const dropdownSizedata = [
@@ -102,29 +98,25 @@ export const dropdownSizedata = [
 
 export const dropdownBranddata = [
     {
-        name: "Abcsd",
-        value: "Abcsd"
+        name: "Bianchi",
+        value: "bianchi"
     },
     {
-        name: "Bcgds",
-        value: "Bcgds"
+        name: "BMC",
+        value: "bmc"
     },
     {
-        name: "Cdjhs",
-        value: "Cdjhs"
+        name: "Trek",
+        value: "trek"
     },
     {
-        name: "Dskjd",
-        value: "Dskjd"
+        name: "Hero",
+        value: "hero"
     },
     {
-        name: "Efdgf",
-        value: "Efdgf"
-    },
-    {
-        name: "Fsadkj",
-        value: "Fsadkj"
-    },
+        name: "Avon",
+        value: "avon"
+    }
 ]
 
 export const advantages = [

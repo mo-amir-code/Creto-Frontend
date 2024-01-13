@@ -21,7 +21,7 @@ export interface ProductSliceType{
     },
     cart:{
         status: string | null,
-        data: [CartDataType] | null,
+        data: [CartDataType] | [],
         count: number
     }
 }

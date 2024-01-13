@@ -7,13 +7,14 @@ import { fetchCartDataAsync } from "../redux/product/productAsyncThunk";
 import { selectCart } from "../redux/product/productSlice";
 import Loader from "../components/Loader";
 import { CartDataType } from "../redux/product/productTypes";
+import EmptyCart from "../components/cart/EmptyCart";
 
 const CartPage = () => {
   const dispatch = useAppDispatch();
   const isLoggedIn = useAppSelector(selectIsLoggedIn);
   const loggedInUser = useAppSelector(selectLoggedInUser);
   const cart = useAppSelector(selectCart);
-  const subTotal = cart?.data?.reduce((total:number, current:CartDataType) => {
+  const subTotal = cart?.data?.reduce((total: number, current: CartDataType) => {
     return total + current?.currentPrice;
   }, 0);
 
@@ -24,10 +25,10 @@ const CartPage = () => {
     }
   }, [])
 
-  if(cart.status === "pending") {
+  if (cart.status === "pending") {
     return (
       <div className="w-full h-[80vh]" >
-      <Loader />
+        <Loader />
       </div>
     )
   }
@@ -35,8 +36,10 @@ const CartPage = () => {
   return (
     <div className="max-w-6xl mx-auto w-full" >
       <div className="w-full flex justify-center py-12 max-lg:flex-col max-lg:justify-start max-lg:gap-8" >
-        <CartItems cart={cart?.data} />
-        <CartBill subTotal={subTotal} />
+       {cart.data?.length > 0? <>
+          <CartItems cart={cart?.data} />
+          <CartBill subTotal={subTotal} />
+        </> : <EmptyCart message="Cart is empty." />}
       </div>
     </div>
   )
