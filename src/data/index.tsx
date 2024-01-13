@@ -34,7 +34,7 @@ export const navbarData = [
     },
     {
         name: "PROFILE",
-        path: "/profile"
+        path: "/user/profile"
     },
     {
         name: "CART",
