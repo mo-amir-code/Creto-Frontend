@@ -18,9 +18,9 @@ const Addresses = () => {
 
 export default Addresses
 
-const Address = () => {
+export const Address = ({selected}:{selected?:boolean}) => {
     return (
-        <div className="col-span-1 bg-secondary-color/5 shadow-md p-3 rounded-lg smooth_transition" >
+        <div className={`col-span-1 bg-secondary-color/5 shadow-md p-3 ${selected && "border-2 border-primary-color"} rounded-lg smooth_transition`} >
             <p className="inline-flex space-x-1 text-sm" ><div className="w-4 h-4 pt-[0.1rem]" ><MapPinIcon className="w-4 h-4" /></div><span>Mohalla Takiya, Block Wazirganj, Dist Budaun, Uttar Pradesh, INDIA</span></p>
         </div>
     )

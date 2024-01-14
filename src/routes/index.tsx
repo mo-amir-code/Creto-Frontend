@@ -42,6 +42,10 @@ const Routes = () => {
             element:<CartPage />
           },
           {
+            path:"user/cart/checkout",
+            element:<CheckoutPage />
+          },
+          {
             path:"auth",
             element:<AuthLayout />,
             children:[
@@ -83,6 +87,7 @@ const ContactPage =  Loadable(lazy(()=>import("../pages/ContactPage")));
 const UserProfilePage =  Loadable(lazy(()=>import("../pages/UserProfile")));
 const ProductDetailsPage =  Loadable(lazy(()=>import("../pages/ProductDetails")));
 const CartPage =  Loadable(lazy(()=>import("../pages/CartPage")));
+const CheckoutPage =  Loadable(lazy(()=>import("../pages/CheckoutPage")));
 const SignInPage =  Loadable(lazy(()=>import("../pages/SigninPage")));
 const SignUpPage =  Loadable(lazy(()=>import("../pages/SignupPage")));
 const VerifyPage =  Loadable(lazy(()=>import("../pages/VerifyPage")));

@@ -15,7 +15,7 @@ const UserOrders = () => {
 
 export default UserOrders
 
-const Order = () => {
+export const Order = () => {
   return (
     <div className="p-6 rounded-lg shadow-lg w-full" >
       {/* Order Header */}
@@ -54,35 +54,28 @@ const Order = () => {
 
       {/* Order items */}
       <div className="w-full flex items-center flex-wrap gap-3 border-t border-secondary-color" >
-        <div className="min-w-[300px] flex gap-2 max-[1020px]:border-none flex-1 py-4 " >
-          <div className="w-[80px] h-[80px] flex items-center justify-center shadow-md rounded-lg" >
-            <img src={bike} alt="product" className="w-full object-center" />
-          </div>
-          <div className="py-2" >
-            <h4 className="font-semibold text-gray-500 text-sm" >Bicycle with six gears</h4>
-            <h4 className="font-semibold text-gray-500 text-sm" >Color: red</h4>
-            <h4 className="font-semibold text-gray-500 text-sm" >Item: 2</h4>
-          </div>
+        <OrderItem />
+        <OrderItem />
+        <OrderItem />
+      </div>
+    </div>
+  )
+}
+
+export const OrderItem = () => {
+  return (
+    <div className="min-w-[300px] w-full flex gap-2 max-[1020px]:border-none flex-1 py-4 " >
+      <div className="w-[80px] h-[80px] flex items-center justify-center shadow-md rounded-lg" >
+        <img src={bike} alt="product" className="w-full object-center" />
+      </div>
+      <div className="py-2 flex-grow flex items-center justify-between" >
+        <div>
+          <h4 className="font-semibold text-gray-500 text-sm" >Bicycle with six gears</h4>
+          <h4 className="font-semibold text-gray-500 text-sm" >Color: red</h4>
+          <h4 className="font-semibold text-gray-500 text-sm" >Item: 2</h4>
         </div>
-        <div className="min-w-[300px] flex gap-2 max-[1020px]:border-none flex-1 py-4 " >
-          <div className="w-[80px] h-[80px] flex items-center justify-center shadow-md rounded-lg" >
-            <img src={bike} alt="product" className="w-full object-center" />
-          </div>
-          <div className="py-2" >
-            <h4 className="font-semibold text-gray-500 text-sm" >Bicycle with six gears</h4>
-            <h4 className="font-semibold text-gray-500 text-sm" >Color: red</h4>
-            <h4 className="font-semibold text-gray-500 text-sm" >Item: 2</h4>
-          </div>
-        </div>
-        <div className="min-w-[300px] flex gap-2 max-[1020px]:border-none flex-1 py-4 " >
-          <div className="w-[80px] h-[80px] flex items-center justify-center shadow-md rounded-lg" >
-            <img src={bike} alt="product" className="w-full object-center" />
-          </div>
-          <div className="py-2" >
-            <h4 className="font-semibold text-gray-500 text-sm" >Bicycle with six gears</h4>
-            <h4 className="font-semibold text-gray-500 text-sm" >Color: red</h4>
-            <h4 className="font-semibold text-gray-500 text-sm" >Item: 2</h4>
-          </div>
+        <div className="h-full flex items-end justify-end" >
+          <h4 className="font-bold text-gray-500 text-sm" >SubTotal: $645</h4>
         </div>
       </div>
     </div>

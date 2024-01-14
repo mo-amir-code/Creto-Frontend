@@ -1,4 +1,4 @@
-import { ChatBubbleOvalLeftEllipsisIcon, EnvelopeIcon, LockClosedIcon, PhoneIcon, UserCircleIcon, UserIcon } from "@heroicons/react/24/solid"
+import { ChatBubbleOvalLeftEllipsisIcon, DevicePhoneMobileIcon, EnvelopeIcon, GlobeAmericasIcon, HomeModernIcon, LockClosedIcon, MapPinIcon, PhoneIcon, UserCircleIcon, UserIcon } from "@heroicons/react/24/solid"
 import { useForm } from "react-hook-form";
 
 export interface ContactFormType{
@@ -47,6 +47,8 @@ export const ContactInputField = ({placeHolder, icon, type, register}:{placeHold
                 switch(icon){
                     case "user":
                         return <UserIcon className="w-5 h-5" />;
+                    case "name":
+                        return <UserIcon className="w-5 h-5" />;
                     case "phone":
                         return <PhoneIcon className="w-5 h-5" />
                     case "email":
@@ -57,11 +59,23 @@ export const ContactInputField = ({placeHolder, icon, type, register}:{placeHold
                         return <LockClosedIcon className="w-5 h-5" />
                     case "name":
                         return <UserCircleIcon className="w-5 h-5" />
+                    case "address":
+                        return <MapPinIcon className="w-5 h-5" />
+                    case "country":
+                        return <GlobeAmericasIcon className="w-5 h-5" />
+                    case "state":
+                        return <GlobeAmericasIcon className="w-5 h-5" />
+                    case "postalCode":
+                        return <MapPinIcon className="w-5 h-5" />
+                    case "city":
+                        return <HomeModernIcon className="w-5 h-5" />
+                    case "mobile":
+                        return <DevicePhoneMobileIcon className="w-5 h-5" />
                     default:
                         console.log("something went wrong")
                 }
             })()}
-            <input type={type} {...register(icon, {required:true})} className="text-base font-normal outline-none group w-full" placeholder={placeHolder} />
+            <input type={type} {...register? {...register(icon, {required:true})} : null} className="text-base font-normal outline-none group w-full" placeholder={placeHolder} />
         </div>
     )
 }

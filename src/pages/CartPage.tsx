@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import CartBill from "../components/cart/CartBill"
 import CartItems from "../components/cart/CartItems"
 import { useAppDispatch, useAppSelector } from "../redux/hooks"
@@ -10,13 +10,19 @@ import { CartDataType } from "../redux/product/productTypes";
 import EmptyCart from "../components/cart/EmptyCart";
 
 const CartPage = () => {
+  const [subTotal, setSubTotal] = useState<number>(0);
   const dispatch = useAppDispatch();
   const isLoggedIn = useAppSelector(selectIsLoggedIn);
   const loggedInUser = useAppSelector(selectLoggedInUser);
   const cart = useAppSelector(selectCart);
-  const subTotal = cart?.data?.reduce((total: number, current: CartDataType) => {
-    return total + current?.currentPrice;
-  }, 0);
+
+
+  useEffect(() => {
+    const total = cart?.data?.reduce((total: number, current: CartDataType) => {
+      return total + current?.currentPrice * current.quantity;
+    }, 0);
+    setSubTotal(total)
+  }, [cart?.data])
 
 
   useEffect(() => {
@@ -36,9 +42,9 @@ const CartPage = () => {
   return (
     <div className="max-w-6xl mx-auto w-full" >
       <div className="w-full flex justify-center py-12 max-lg:flex-col max-lg:justify-start max-lg:gap-8" >
-       {cart.data?.length > 0? <>
+        {cart.data?.length > 0 ? <>
           <CartItems cart={cart?.data} />
-          <CartBill subTotal={subTotal} />
+          <CartBill isCart={true} subTotal={subTotal} />
         </> : <EmptyCart message="Cart is empty." />}
       </div>
     </div>
