@@ -20,6 +20,7 @@ const Form = () => {
     } = useForm<FormData>();
 
     const handleOnSubmit = (data: FormDataType) => {
+        console.log(data);
         
     }
 
