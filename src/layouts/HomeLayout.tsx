@@ -22,8 +22,8 @@ const HomeLayout = () => {
     const dispatch = useAppDispatch();
 
     useEffect(() => {
-        if ((path === "/user/cart" || path === "/profile" || path.startsWith("/admin")) && !isLoggedIn) {
-            navigate("/");
+        if ((path === "/user/cart" || path === "/user/profile" || path.startsWith("/admin")) && !isLoggedIn) {
+            navigate("/auth/signin");
         }
 
         if(isLoggedIn && loggedInUser){

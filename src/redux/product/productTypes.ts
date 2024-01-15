@@ -19,6 +19,10 @@ export interface ProductSliceType{
         status: string | null,
         data: ProductType | null
     },
+    relatedProducts: {
+        status: string | null,
+        data: [ProductType] | []
+    },
     cart:{
         status: string | null,
         data: [CartDataType] | [],

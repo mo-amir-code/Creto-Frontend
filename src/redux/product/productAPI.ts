@@ -39,6 +39,18 @@ export const getProductById = ({productId}:{productId: string}) => {
     })
 }
 
+export const getRelatedProducts = ({type}:{type: string}) => {
+    return new Promise(async (resolved, rejected) => {
+        try {
+            const response = await httpAxios.get(`/product/related?type=${type}`);
+            resolved(response.data)
+        } catch (err: any) {
+            console.error(err.message)
+            rejected(err.response.data)
+        }
+    })
+}
+
 export const addToCart = ({data}:{data: CartDataType}) => {
     return new Promise(async (resolved, rejected) => {
         try {
@@ -103,6 +115,18 @@ export const searchByQuery = ({query}:{query:string}) => {
     return new Promise(async (resolved, rejected) => {
         try {
             const response = await httpAxios.get(`/product/search?${query}`);
+            resolved(response.data);
+        } catch (err: any) {
+            console.error(err.message);
+            rejected(err.response.data);
+        }
+    })
+}
+
+export const searchQuery = ({type}:{type:string}) => {
+    return new Promise(async (resolved, rejected) => {
+        try {
+            const response = await httpAxios.get(`/product/search-type?type=${type}`);
             resolved(response.data);
         } catch (err: any) {
             console.error(err.message);

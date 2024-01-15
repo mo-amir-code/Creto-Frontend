@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { CartDataType, ProductSliceType } from "./productTypes";
-import { addToCartAsync, deleteCartAsync, editCartAsync, fetchCartCountAsync, fetchCartDataAsync, getAllProductsAsync, getProductByIdAsync, getTopSellProductsAsync, searchByQueryAsync } from "./productAsyncThunk";
+import { addToCartAsync, deleteCartAsync, editCartAsync, fetchCartCountAsync, fetchCartDataAsync, getAllProductsAsync, getProductByIdAsync, getRelatedProductsAsync, getTopSellProductsAsync, searchByQueryAsync, searchQueryAsync } from "./productAsyncThunk";
 import { ActionPayloadType } from "../auth/authTypes";
 import { toast } from "react-toastify";
 import { RootState } from "../store";
@@ -22,6 +22,10 @@ const initialState = {
   product: {
     status: null,
     data: null,
+  },
+  relatedProducts: {
+    status: null,
+    data: [],
   },
   cart:{
     status:null,
@@ -73,6 +77,19 @@ const productSlice = createSlice({
       .addCase(getProductByIdAsync.rejected, (state, action) => {
         const { message } = action.error as ActionPayloadType;
         state.product.status = "error";
+        toast.error(message);
+      })
+      .addCase(getRelatedProductsAsync.pending, (state) => {
+        state.relatedProducts.status = "pending";
+      })
+      .addCase(getRelatedProductsAsync.fulfilled, (state, action) => {
+        const { data } = action.payload as ActionPayloadType;
+        state.relatedProducts.status = "success";
+        state.relatedProducts.data = data;
+      })
+      .addCase(getRelatedProductsAsync.rejected, (state, action) => {
+        const { message } = action.error as ActionPayloadType;
+        state.relatedProducts.status = "error";
         toast.error(message);
       })
       .addCase(addToCartAsync.pending, (state) => {
@@ -157,6 +174,19 @@ const productSlice = createSlice({
         state.filteredProducts.status = "error";
         toast.error(message);
       })
+      .addCase(searchQueryAsync.pending, (state) => {
+        state.products.status = "pending";
+      })
+      .addCase(searchQueryAsync.fulfilled, (state, action) => {
+        const {data} = action.payload as ActionPayloadType;
+        state.products.status = "success";
+        state.products.data = data;
+      })
+      .addCase(searchQueryAsync.rejected, (state, action) => {
+        const { message } = action.error as ActionPayloadType;
+        state.products.status = "error";
+        toast.error(message);
+      })
       
   },
 });
@@ -165,6 +195,7 @@ export const selectProducts = (state: RootState) => state.product.products;
 export const selectTopSellProducts = (state: RootState) => state.product.topSellProducts;
 export const selectFilterProducts = (state: RootState) => state.product.filteredProducts;
 export const selectProduct = (state: RootState) => state.product.product;
+export const selectRelatedProducts = (state: RootState) => state.product.relatedProducts;
 export const selectCart = (state: RootState) => state.product.cart;
 
 export default productSlice.reducer;

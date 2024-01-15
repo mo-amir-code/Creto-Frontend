@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import { productsType } from "../../data"
 import ProductCard from "../ProductCard";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
-import { getAllProductsAsync, getTopSellProductsAsync } from "../../redux/product/productAsyncThunk";
+import { getAllProductsAsync, getTopSellProductsAsync, searchQueryAsync } from "../../redux/product/productAsyncThunk";
 import { selectProducts } from "../../redux/product/productSlice";
 import Loader from "../Loader";
 
@@ -26,7 +26,8 @@ const OurProducts = () => {
     }
 
     const handleSet = (type: string) => {
-        setPType({ ...pType, selected: type })
+        setPType({ ...pType, selected: type });
+        dispatch(searchQueryAsync({type:pType.name.split(" ")[0].toLowerCase()}));
     }
 
     useEffect(() => {

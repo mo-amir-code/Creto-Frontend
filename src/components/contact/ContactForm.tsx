@@ -69,7 +69,7 @@ export const ContactInputField = ({placeHolder, icon, type, register}:{placeHold
                         return <MapPinIcon className="w-5 h-5" />
                     case "city":
                         return <HomeModernIcon className="w-5 h-5" />
-                    case "mobile":
+                    case "mobileNo":
                         return <DevicePhoneMobileIcon className="w-5 h-5" />
                     default:
                         console.log("something went wrong")

@@ -1,28 +1,13 @@
 import { useForm } from "react-hook-form";
 import { ContactInputField } from "../contact/ContactForm"
 
-interface FormDataType {
-    name: string,
-    email: string,
-    address: string,
-    country: string,
-    state: string,
-    city: string,
-    postalCode: number,
-    mobile: number,
-}
 
-const Form = () => {
+const Form = ({handleOnSubmit}:{handleOnSubmit:Function}) => {
 
     const {
         register,
         handleSubmit,
     } = useForm<FormData>();
-
-    const handleOnSubmit = (data: FormDataType) => {
-        console.log(data);
-        
-    }
 
 
     return (
@@ -37,7 +22,7 @@ const Form = () => {
             <ContactInputField placeHolder="City" icon="city" type="text" register={register} />
             <div className="flex items-center max-sm:flex-col justify-center gap-2" >
                 <ContactInputField placeHolder="Postal Code" icon="postalCode" type="number" register={register} />
-                <ContactInputField placeHolder="Mobile Number" icon="mobile" type="number" register={register} />
+                <ContactInputField placeHolder="Mobile Number" icon="mobileNo" type="number" register={register} />
             </div>
             <button className="px-4 py-2 rounded-lg bg-primary-color font-[Teko] text-lg max-sm:text-base font-semibold shadow-lg hover:-translate-y-1 smooth_transition" >Submit</button>
         </form>

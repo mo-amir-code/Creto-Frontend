@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { toast } from "react-toastify";
-import { addToCart, deleteCart, editCart, fetchCartCount, fetchCartData, getAllProducts, getProductById, getTopSellProducts, searchByQuery } from "./productAPI";
+import { addToCart, deleteCart, editCart, fetchCartCount, fetchCartData, getAllProducts, getProductById, getRelatedProducts, getTopSellProducts, searchByQuery, searchQuery } from "./productAPI";
 import { CartDataType } from "./productTypes";
 
 
@@ -27,6 +27,16 @@ export const getTopSellProductsAsync = createAsyncThunk("product/getTopSellProdu
 export const getProductByIdAsync = createAsyncThunk("product/getProductById", async ({productId}:{productId: string}) => {
     try {
         const res = await getProductById({productId});
+        return res;
+    } catch (error) {
+        console.error(error);
+        toast.error("Something went wrong")
+    }
+})
+
+export const getRelatedProductsAsync = createAsyncThunk("product/getRelatedProducts", async ({type}:{type: string}) => {
+    try {
+        const res = await getRelatedProducts({type});
         return res;
     } catch (error) {
         console.error(error);
@@ -87,6 +97,16 @@ export const deleteCartAsync = createAsyncThunk("product/deleteCart", async ({ca
 export const searchByQueryAsync = createAsyncThunk("product/searchByQuery", async ({query}:{query:string }) => {
     try {
         const res = await searchByQuery({query});
+        return res;
+    } catch (error) {
+        console.error(error);
+        toast.error("Something went wrong")
+    }
+})
+
+export const searchQueryAsync = createAsyncThunk("product/searchQuery", async ({type}:{type:string }) => {
+    try {
+        const res = await searchQuery({type});
         return res;
     } catch (error) {
         console.error(error);

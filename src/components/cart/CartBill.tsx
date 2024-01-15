@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 import { calculateGST, calculateTotal } from "../../services"
 
 
@@ -14,7 +15,7 @@ const CartBill = ({ subTotal, isCart }: { subTotal: number | undefined, isCart: 
         <div className="py-2" >
           <h3 className="flex items-center py-3 border-t border-b border-secondary-color justify-between font-semibold" ><span>Total</span><span>${calculateTotal(subTotal)?.toFixed(2)}</span></h3>
         </div>
-        {isCart && <button className="w-full py-3 font-bold shadow-lg smooth_transition hover:-translate-y-1 flex items-center justify-center bg-primary-color rounded-full" >Checkout</button>}      </div>
+        {isCart && <Link to={`/user/cart/checkout`} className="w-full py-3 font-bold shadow-lg smooth_transition hover:-translate-y-1 flex items-center justify-center bg-primary-color rounded-full" >Checkout</Link>}      </div>
     </div>
   )
 }

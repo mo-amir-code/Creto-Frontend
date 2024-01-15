@@ -5,11 +5,13 @@ import { persistReducer } from "redux-persist";
 import authSlice from "./auth/authSlice";
 import productSlice from "./product/productSlice";
 import promotionSlice from "./promotion/promotionSlice";
+import userSlice from "./user/userSlice";
 
 const rootReducer = combineReducers({
     auth: authSlice,
     product: productSlice,
-    promotion: promotionSlice
+    promotion: promotionSlice,
+    user: userSlice,
 })
 
 

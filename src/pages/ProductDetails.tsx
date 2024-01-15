@@ -5,7 +5,7 @@ import Description from "../components/productDetails/Description";
 import RelatedProducts from "../components/productDetails/RelatedProducts";
 import { useParams } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
-import { selectProduct, selectProducts } from "../redux/product/productSlice";
+import { selectProduct } from "../redux/product/productSlice";
 import { getProductByIdAsync } from "../redux/product/productAsyncThunk";
 import Loader from "../components/Loader";
 
@@ -15,13 +15,12 @@ import Loader from "../components/Loader";
 const ProductDetails = () => {
     const [tabSelected, setTabSelected] = useState<number>(1);
     const {productId}  = useParams();
-    const products = useAppSelector(selectProducts);
     const product = useAppSelector(selectProduct)
     const dispatch = useAppDispatch();
     
     useEffect(()=>{
         if(productId){
-            dispatch(getProductByIdAsync({productId}))
+            dispatch(getProductByIdAsync({productId}));
         }
     }, [productId])
 
@@ -41,7 +40,7 @@ const ProductDetails = () => {
                 <Tab tabSelected={tabSelected} setTabSelected={setTabSelected} />
                 <Description product={product?.data} />
             </div>
-            <RelatedProducts products={products.data} />
+            <RelatedProducts type={product?.data?.type} />
         </div>
     )
 }
