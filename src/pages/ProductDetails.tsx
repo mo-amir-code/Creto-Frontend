@@ -10,8 +10,6 @@ import { getProductByIdAsync } from "../redux/product/productAsyncThunk";
 import Loader from "../components/Loader";
 
 
-
-
 const ProductDetails = () => {
     const [tabSelected, setTabSelected] = useState<number>(1);
     const {productId}  = useParams();
@@ -24,7 +22,7 @@ const ProductDetails = () => {
         }
     }, [productId])
 
-    if(product.status === "pending"){
+    if(product.status === "pending" || !product.data){
         return (
             <div className="h-[70vh] w-full" >
                 <Loader />

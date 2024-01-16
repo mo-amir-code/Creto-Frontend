@@ -12,6 +12,8 @@ import { auth } from "../firebase";
 import { persist } from "../redux/store";
 import { toast } from "react-toastify";
 import { fetchCartCountAsync } from "../redux/product/productAsyncThunk";
+import { resetUserState, selectUserInfo } from "../redux/user/userSlice";
+import { fetchUserAsync } from "../redux/user/userAsyncThunk";
 
 const HomeLayout = () => {
     const [menuOpen, setMenuOpen] = useState(false);
@@ -19,6 +21,7 @@ const HomeLayout = () => {
     const navigate = useNavigate();
     const isLoggedIn = useAppSelector(selectIsLoggedIn);
     const loggedInUser = useAppSelector(selectLoggedInUser);
+    const userInfo = useAppSelector(selectUserInfo);
     const dispatch = useAppDispatch();
 
     useEffect(() => {
@@ -26,11 +29,18 @@ const HomeLayout = () => {
             navigate("/auth/signin");
         }
 
-        if(isLoggedIn && loggedInUser){
-            dispatch(fetchCartCountAsync({userId:loggedInUser?.userId}));
+        if (isLoggedIn && loggedInUser) {
+            dispatch(fetchCartCountAsync({ userId: loggedInUser?.userId }));
         }
-        
+
     }, [path, isLoggedIn])
+
+    useEffect(() => {
+        if (isLoggedIn && loggedInUser && !userInfo.data) {
+            dispatch(fetchUserAsync({ userId: loggedInUser.userId }))
+        }
+
+    }, [])
 
     return (
         <div className="w-full relative" >
@@ -53,6 +63,7 @@ export const OpenMenu = ({ open, setMenuOpen }: { open: boolean, setMenuOpen: Fu
             setMenuOpen(false)
             handleLogOut()
             dispatch(resetAuthState());
+            dispatch(resetUserState());
         }
     }
 

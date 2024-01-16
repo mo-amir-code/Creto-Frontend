@@ -38,24 +38,24 @@ const Header = ({ menuOpen, setMenuOpen }: { menuOpen: boolean, setMenuOpen: Fun
                         </svg>
                     </button>
                 </span>
-                {isLoggedIn? <div className="flex items-center gap-2" >
+                {isLoggedIn ? <div className="flex items-center gap-2" >
                     <span className="relative cursor-pointer border-r border-secondary-color_3 pr-2" >
-                        <HeartIcon className="w-5 h-5 max-md:w-4 max-md:h-4 font-bold text-secondary-color_3" />
-                        <span className="absolute bottom-[45%] left-[40%] text-[0.6rem] bg-primary-color rounded-full w-4 h-4 text-center" >
+                        <Link to={"/user/wishlist"} ><HeartIcon className="w-5 h-5 max-md:w-4 max-md:h-4 font-bold text-secondary-color_3" /></Link>
+                        {/* <span className="absolute bottom-[45%] left-[40%] text-[0.6rem] bg-primary-color rounded-full w-4 h-4 text-center" >
                             6
-                        </span>
+                        </span> */}
                     </span>
                     <span className="relative border-r cursor-pointer border-secondary-color_3 pr-2" >
                         <Link to={"/user/cart"}><ShoppingCartIcon className="w-5 max-md:w-4 max-md:h-4 cursor-pointer h-5 font-bold text-secondary-color_3" />
-                        {cart?.count>0 && <span className="absolute bottom-[45%] left-[40%] text-[0.6rem] bg-primary-color rounded-full w-4 h-4 text-center" >
-                            {cart?.count}
-                        </span>}
+                            {cart?.count > 0 && <span className="absolute bottom-[45%] left-[40%] text-[0.6rem] bg-primary-color rounded-full w-4 h-4 text-center" >
+                                {cart?.count}
+                            </span>}
                         </Link>
                     </span>
                     <UserIcon className="w-5 h-5 max-md:w-4 max-md:h-4 font-bold text-secondary-color_3 cursor-pointer" />
                 </div>
-                :
-                <Link to={'/auth/signin'} className=" smooth_transition hover:border-secondary-color hover:shadow-lg font-[Teko] text-xl text-secondary-color hover:text-primary-color px-4 border border-primary-color" >Login</Link>
+                    :
+                    <Link to={'/auth/signin'} className=" smooth_transition hover:border-secondary-color hover:shadow-lg font-[Teko] text-xl text-secondary-color hover:text-primary-color px-4 border border-primary-color" >Login</Link>
                 }
             </div>
             <div className="flex items-center max-md:justify-center max-md:py-2 justify-between px-2" >

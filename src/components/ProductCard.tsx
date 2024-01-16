@@ -1,7 +1,13 @@
 import { ArrowPathIcon, HeartIcon } from "@heroicons/react/24/solid"
 import { Link } from "react-router-dom"
 import { ProductType } from "./componentsTypes"
-import { calculateDiscountedPrice } from "../services"
+import { calculateDiscountedPrice, checkIsWishlist } from "../services"
+import { useAppDispatch, useAppSelector } from "../redux/hooks"
+import { selectIsLoggedIn, selectLoggedInUser } from "../redux/auth/authSlice"
+import { toast } from "react-toastify"
+import { addProductToWishlistAsync } from "../redux/user/userAsyncThunk"
+import { useEffect, useState } from "react"
+import { selectUserInfo } from "../redux/user/userSlice"
 
 // interface ProductCardType{
 //     _id:Number,
@@ -17,6 +23,29 @@ import { calculateDiscountedPrice } from "../services"
 // }
 
 const ProductCard = ({ _id, title, thumbnail, price, discount, specs, type }: ProductType) => {
+    const [isWishlist, setIsWishList] = useState<boolean>(false);
+    const dispatch = useAppDispatch();
+    const isLoggedIn = useAppSelector(selectIsLoggedIn);
+    const loggedInUser = useAppSelector(selectLoggedInUser);
+    const userInfo = useAppSelector(selectUserInfo);
+
+
+    const handleAddToWishlist = ({_id}:{_id:string}) => {
+        if(isLoggedIn && loggedInUser){
+            dispatch(addProductToWishlistAsync({_id, userId:loggedInUser.userId}));
+        }else{
+            toast.error("You are not logged in.");
+        }
+    }
+
+
+    useEffect(() => {
+        if(userInfo.data && _id){
+            setIsWishList(checkIsWishlist({wishlist:userInfo?.data?.wishlist, productId:_id}) || false)
+        }
+    }, [userInfo])
+
+
     return (
         <Link to={`/p/${_id}`} className="relative min-w-[250px] hover:shadow-lg transition-all duration-200 group px-2 py-6 bg-white shadow-md flex-col justify-center items-center" >
             <div className="max-w-[250px] h-[250px] overflow-hidden flex items-center justify-center cursor-pointer" >
@@ -24,7 +53,7 @@ const ProductCard = ({ _id, title, thumbnail, price, discount, specs, type }: Pr
             </div>
             <div className="absolute top-4 right-0 z-10 flex items-center justify-end gap-2 px-2" >
                 <span><ArrowPathIcon className="w-5 h-5 hover:text-primary-color cursor-pointer transition-all duration-200 font-bold text-secondary-color_3" /></span>
-                <span><HeartIcon className="w-5 h-5 hover:text-primary-color cursor-pointer transition-all duration-200 font-bold text-secondary-color_3" /></span>
+                <span onClick={()=>handleAddToWishlist({_id})} ><HeartIcon className={`w-5 h-5 ${isWishlist ? "text-red-600" : "text-secondary-color_3"} hover:text-primary-color cursor-pointer transition-all duration-200 font-bold`} /></span>
             </div>
             <div className="px-3 max-w-[250px]" >
                 <div className="flex justify-start items-center font-[Teko] gap-3" >

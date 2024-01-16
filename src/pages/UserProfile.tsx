@@ -15,7 +15,7 @@ const UserProfile = () => {
   const userInfo = useAppSelector(selectUserInfo);
 
   useEffect(() => {
-    if (isLoggedIn && loggedInUser) {
+    if (isLoggedIn && loggedInUser && !userInfo.data) {
       dispatch(fetchUserAsync({ userId: loggedInUser?.userId }));
     }
   }, [])

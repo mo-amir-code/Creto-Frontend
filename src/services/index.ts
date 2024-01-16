@@ -67,3 +67,15 @@ export const calculateTotal = (subTotal:number | undefined) => {
     toast.error("Something went wrong");
   }
 }
+
+export const checkIsWishlist = ({wishlist, productId}:{wishlist: string[], productId:string}) => {
+  try {
+    if(wishlist && productId){
+      const isWishlisted = wishlist.includes(productId);
+      if(isWishlisted) return true;
+    }
+    return false;
+  } catch (error) {
+    toast.error("Something went wrong");
+  }
+}

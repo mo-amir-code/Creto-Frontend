@@ -73,7 +73,7 @@ const FilterProducts = () => {
                         <CartSection />
                         <Bike />
                         <Price />
-                        <Colors  />
+                        <Colors />
                         <FilterReset setSearchParams={setSearchParams} />
                     </div>
                 </div>
@@ -91,15 +91,15 @@ const FilterProducts = () => {
                             </div>
                         </div>
                         <div className="flex justify-center w-full flex-wrap gap-4 py-12 px-4" >
-                            {
-                                products?.data?.length > 0 ? products?.status !== "pending"? products?.data?.map((product) => (
-                                    <ProductCard key={product._id} {...product} />
-                                )) : <div className="w-full h-[50vh]" >
-                                    <Loader />
-                                </div>
-                                :
-                                <NoData subline="Products Not Found" />
-                            }
+                                {
+                                    products?.data?.length > 0 ? products?.status !== "pending" ? products?.data?.map((product) => (
+                                        <ProductCard {...product} />
+                                    )) : <div className="w-full h-[50vh]" >
+                                        <Loader />
+                                    </div>
+                                        :
+                                        <NoData subline="Products Not Found" />
+                                }
                         </div>
                     </div>
                     <Pagination totalPage={products.totalCount} searchParams={searchParams} setSearchParams={setSearchParams} />
@@ -127,11 +127,11 @@ const FilterReset = ({ setSearchParams }: { setSearchParams: Function }) => {
     )
 }
 
-const Pagination = ({totalPage, searchParams, setSearchParams}:{totalPage:number, searchParams:any, setSearchParams:Function}) => {
+const Pagination = ({ totalPage, searchParams, setSearchParams }: { totalPage: number, searchParams: any, setSearchParams: Function }) => {
     const [currentPage, setCurrentPage] = useState<number>(1);
 
 
-    const handlePage = (n:any) => {
+    const handlePage = (n: any) => {
         setCurrentPage(n);
         searchParams.set("page", n);
         setSearchParams(searchParams)
@@ -140,28 +140,28 @@ const Pagination = ({totalPage, searchParams, setSearchParams}:{totalPage:number
     useEffect(() => {
         const currPage = searchParams.get("page");
         const itemLimit = searchParams.get("limit");
-        if(currPage){
+        if (currPage) {
             setCurrentPage(parseInt(currPage));
-        }else{
+        } else {
             searchParams.set("page", 1);
         }
-        if(!itemLimit){
+        if (!itemLimit) {
             searchParams.set("limit", ITEM_PER_PAGE)
         }
         setSearchParams(searchParams);
     }, [searchParams])
-    
+
     return (
         <div className="w-full flex items-center justify-center font-[Teko] gap-3" >
             <span className="w-10 h-10 smooth_transition hover:shadow-lg hover:bg-primary-color flex items-center justify-center font-[Teko] font-bold border-2 border-secondary-color_3 cursor-pointer" ><ChevronLeftIcon className="w-4 h-4" /></span>
             {
-                Array.from({ length: Math.ceil(totalPage/ITEM_PER_PAGE) }, (_, index) => index + 1).map((n) => {
-                    if(n <= 10){
-                        return <span key={n} onClick={()=>handlePage(n)} className={`w-10 h-10 ${currentPage === n && "bg-primary-color shadow-lg"} flex hover:shadow-lg items-center justify-center font-bold border-2 border-secondary-color_3 cursor-pointer smooth_transition`} >{n}</span>
-                    }else if(n == 11){
-                         return <span key={n} className={`w-10 h-10 flex hover:shadow-lg items-end justify-center font-bold cursor-pointer smooth_transition`} >...</span>
+                Array.from({ length: Math.ceil(totalPage / ITEM_PER_PAGE) }, (_, index) => index + 1).map((n) => {
+                    if (n <= 10) {
+                        return <span key={n} onClick={() => handlePage(n)} className={`w-10 h-10 ${currentPage === n && "bg-primary-color shadow-lg"} flex hover:shadow-lg items-center justify-center font-bold border-2 border-secondary-color_3 cursor-pointer smooth_transition`} >{n}</span>
+                    } else if (n == 11) {
+                        return <span key={n} className={`w-10 h-10 flex hover:shadow-lg items-end justify-center font-bold cursor-pointer smooth_transition`} >...</span>
                     }
-                  })
+                })
             }
             <span className="w-10 h-10 smooth_transition hover:shadow-lg hover:bg-primary-color flex items-center justify-center font-[Teko] font-bold border-2 border-secondary-color_3 cursor-pointer" ><ChevronRightIcon className="w-4 h-4" /></span>
         </div>

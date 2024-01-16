@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { ProductType } from "../componentsTypes";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { selectIsLoggedIn, selectLoggedInUser } from "../../redux/auth/authSlice";
-import { calculateDiscountedPrice } from "../../services";
+import { calculateDiscountedPrice, checkIsWishlist } from "../../services";
 import { addToCartAsync } from "../../redux/product/productAsyncThunk";
 import { toast } from "react-toastify";
 import { selectCart } from "../../redux/product/productSlice";
@@ -10,15 +10,21 @@ import Loader from "../Loader";
 import { useSearchParams } from "react-router-dom";
 import Slider from "react-slick";
 import ArrowButton from "../categories/ArrowButton";
+import { addProductToWishlistAsync, removeProductFromWishlistAsync } from "../../redux/user/userAsyncThunk";
+import { HeartIcon } from "@heroicons/react/24/solid";
+import NoData from "../NoData";
+import { selectUserInfo } from "../../redux/user/userSlice";
 
 
 const Hero = ({ product }: { product: ProductType | null }) => {
     const [quantity, setQuantity] = useState<number>(1);
+    const [isWishlist, setIsWishList] = useState<boolean>(false);
     const [selectedColor, setSelectedColor] = useState<string | undefined>(product?.colors[0])
     const [selectedFrame, setSelectedFrame] = useState<string | undefined>(product?.specs?.frameSize ? product?.specs?.frameSize[0] : undefined)
     const [selectedWheel, setSelectedWheel] = useState<number | undefined>(product?.specs?.wheelSize ? product?.specs?.wheelSize[0] : undefined)
     const [searchParams, setSearchParams] = useSearchParams();
     const loggedInUser = useAppSelector(selectLoggedInUser)
+    const userInfo = useAppSelector(selectUserInfo);
     const isLoggedIn = useAppSelector(selectIsLoggedIn)
     const images = [product?.thumbnail, ...product?.images || []] as [string] | [];
     const cart = useAppSelector(selectCart)
@@ -41,13 +47,13 @@ const Hero = ({ product }: { product: ProductType | null }) => {
 
     const settings = {
         infinite: true,
-            speed: 500,
-            slidesToShow: 1,
-            slidesToScroll: 1,
-            autoplay: true,
-            autoplaySpeed: 2500, 
-            prevArrow: <ArrowButton left={true} onClick={handlePrev} />,
-            nextArrow: <ArrowButton left={false} onClick={handleNext} />,
+        speed: 500,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        autoplay: true,
+        autoplaySpeed: 2500,
+        prevArrow: <ArrowButton left={true} onClick={handlePrev} />,
+        nextArrow: <ArrowButton left={false} onClick={handleNext} />,
     };
 
 
@@ -67,7 +73,6 @@ const Hero = ({ product }: { product: ProductType | null }) => {
             toast.error("Login your account");
         }
     }
-
 
     const handleDecQuantity = () => {
         if (quantity > 1) {
@@ -96,6 +101,21 @@ const Hero = ({ product }: { product: ProductType | null }) => {
         searchParams.set("wheelSize", wheel.toString());
     }
 
+
+    const handleAddToWishlist = ({ _id }: { _id: string }) => {
+        if (isLoggedIn && loggedInUser) {
+            if (!isWishlist) {
+                dispatch(addProductToWishlistAsync({ _id, userId: loggedInUser.userId }));
+            } else {
+                if (product) {
+                    dispatch(removeProductFromWishlistAsync({ _id: product?._id, userId: loggedInUser.userId }))
+                }
+            }
+        } else {
+            toast.error("You are not logged in.");
+        }
+    }
+
     useEffect(() => {
         setSearchParams(searchParams)
     }, [selectedColor, selectedFrame, selectedWheel, quantity])
@@ -122,12 +142,22 @@ const Hero = ({ product }: { product: ProductType | null }) => {
             setQuantity(parseInt(quantity));
         }
 
-    }, [])
+        if (userInfo.data && product) {
+            setIsWishList(checkIsWishlist({ wishlist: userInfo.data.wishlist, productId: product._id }) || false)
+        }
+
+    }, [userInfo.data]);
+
+    if (!product) {
+        return (
+            <NoData subline="Outdated Product" />
+        )
+    }
 
     return (
         <div className="w-full flex max-[900px]:flex-col max-[900px]:gap-10 items-center justify-center" >
             <div className="w-[806px] max-[900px]:w-full space-y-1 h-full overflow-hidden" >
-                <div className="w-full h-[420px] overflow-hidden" >
+                <div className="w-full h-[420px] overflow-hidden relative" >
                     <Slider {...settings} ref={sliderRef} >
                         {
                             images?.map((image, index) => {
@@ -139,6 +169,7 @@ const Hero = ({ product }: { product: ProductType | null }) => {
                             })
                         }
                     </Slider>
+                    <span className="absolute top-3 right-3" onClick={() => handleAddToWishlist({ _id: product?._id })} ><HeartIcon className={`w-8 h-8 ${isWishlist ? "text-red-600" : "text-secondary-color_3"} hover:text-primary-color cursor-pointer transition-all duration-200 font-bold`} /></span>
                 </div>
                 <div className="w-full flex items-center justify-start gap-1" >
                     {product?.images?.map((image, idx) => (
@@ -153,7 +184,7 @@ const Hero = ({ product }: { product: ProductType | null }) => {
                     <div className="space-y-5 font-bold font-[Teko]" >
                         <h1 className="text-5xl text-secondary-color font-bold font-[Teko] max-lg:text-4xl max-sm:text-3xl" >{product?.title}</h1>
                         <h2 className="text-4xl  text-primary-color flex max-lg:text-3xl max-sm:text-2xl items-center gap-3" ><span>${calculateDiscountedPrice(product?.price, product?.discount)}</span><span className="text-secondary-color_3 font-semibold line-through text-3xl max-lg:text-2xl max-sm:text-xl" >${product?.price}</span></h2>
-                        <span className="text-red-600 pl-1 font-semibold text-xl max-lg:text-2xl max-sm:text-xl" >{(product?.discount && product?.discount/product?.price*100)?.toFixed(2)}% Off</span>
+                        <span className="text-red-600 pl-1 font-semibold text-xl max-lg:text-2xl max-sm:text-xl" >{(product?.discount && product?.discount / product?.price * 100)?.toFixed(2)}% Off</span>
                     </div>
                     <div className="space-y-3" >
                         <div className="flex items-center justify-start gap-3" >

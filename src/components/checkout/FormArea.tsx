@@ -1,3 +1,4 @@
+import { toast } from "react-toastify";
 import { selectIsLoggedIn, selectLoggedInUser } from "../../redux/auth/authSlice";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks"
 import { addAddressAsync } from "../../redux/user/userAsyncThunk";
@@ -24,6 +25,8 @@ const FormArea = () => {
         if (loggedInUser && isLoggedIn && data) {
             const addressData = { ...data, userId: loggedInUser?.userId, };
             dispatch(addAddressAsync({ address: addressData }));
+        }else{
+            toast.error("Somethign went wrong!");
         }
     }
 

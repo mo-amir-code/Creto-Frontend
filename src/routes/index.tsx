@@ -42,6 +42,10 @@ const Routes = () => {
             element:<CartPage />
           },
           {
+            path:"user/wishlist",
+            element:<WishlistPage />
+          },
+          {
             path:"user/cart/checkout",
             element:<CheckoutPage />
           },
@@ -76,13 +80,16 @@ const Routes = () => {
   ])
 
   
-  return <RouterProvider router={routers} />
+  return (
+    <RouterProvider router={routers} /> 
+  )
 }
 
 const HomeLayout = Loadable(lazy(()=>import("../layouts/HomeLayout")));
 const AuthLayout = Loadable(lazy(()=>import("../layouts/AuthLayout")));
 const HomePage =  Loadable(lazy(()=>import("../pages/HomePage")));
 const ShopPage =  Loadable(lazy(()=>import("../pages/ShopPage")));
+const WishlistPage =  Loadable(lazy(()=>import("../pages/WishlistPage")));
 const ContactPage =  Loadable(lazy(()=>import("../pages/ContactPage")));
 const UserProfilePage =  Loadable(lazy(()=>import("../pages/UserProfile")));
 const ProductDetailsPage =  Loadable(lazy(()=>import("../pages/ProductDetails")));

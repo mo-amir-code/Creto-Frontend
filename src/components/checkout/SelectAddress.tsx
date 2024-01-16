@@ -13,7 +13,7 @@ const SelectAddress = () => {
             <div className="flex flex-col justify-center gap-3" >
                 {
                     userInfo.data?.addresses.map((address, idx) => (
-                        <Address address={address} setSelected={setSelected} selected={selected === idx? true : false} idx={idx} />
+                        <Address key={idx} address={address} setSelected={setSelected} selected={selected === idx? true : false} idx={idx} />
                     ))
                 }
             </div>

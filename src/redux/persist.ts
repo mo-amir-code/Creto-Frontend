@@ -1,38 +1,44 @@
 /// <reference types="redux-persist" />
 import { combineReducers } from "@reduxjs/toolkit";
 import storage from 'redux-persist/lib/storage'; 
-import { persistReducer } from "redux-persist";
+import {persistReducer } from "redux-persist";
 import authSlice from "./auth/authSlice";
 import productSlice from "./product/productSlice";
 import promotionSlice from "./promotion/promotionSlice";
 import userSlice from "./user/userSlice";
 
+
+// Persisting storage
+const authPersistConfige = {
+  key: "auth",
+  storage,
+};
+
+const appPersistConfige = {
+  key: "user",
+  storage,
+  whitelist: ["userInfo"],
+};
+
+const persistedAuthReducer = persistReducer(authPersistConfige, authSlice);
+const persistedUserReducer = persistReducer(appPersistConfige, userSlice);
+
+
 const rootReducer = combineReducers({
-    auth: authSlice,
+    auth: persistedAuthReducer,
     product: productSlice,
     promotion: promotionSlice,
-    user: userSlice,
+    user: persistedUserReducer,
 })
 
 
-const persistConfig = {
+  const persistConfig = {
     key: "root",
     storage,
-    whitelist: ["auth"],
-    // transforms
+    whitelist: ["auth", "user"],
 }
-// userTransform.ts
-// export const userTransform = {
-//     in: (rawUser) => {
-//       // Transform raw user data, keeping only the 'username' property
-//       return { username: rawUser.username };
-//     },
-//     out: (persistedUser) => {
-//       // If you need to perform any additional transformation when rehydrating the state
-//       return persistedUser;
-//     },
-//   };
-// transforms: [createTransform(userTransform.in, userTransform.out, { whitelist: ['user'] })]
+  
+
 
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

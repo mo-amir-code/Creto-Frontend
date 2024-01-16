@@ -1,8 +1,14 @@
+import { ProductType } from "../../components/componentsTypes"
+
 export interface UserSliceType{
     userInfo:{
         status: string | null,
         data: UserInfoType | null
-    }
+    },
+    userWishlist:{
+        status: string | null,
+        data: [ProductType] | []
+      }
 }
 
 export interface UserInfoType{
@@ -12,7 +18,7 @@ export interface UserInfoType{
     addresses:[AddressType] | [],
     role:string,
     photoUrl:string | null,
-    wishlist: [string] | [] | null
+    wishlist: [string] | [] 
 }
 
 export interface AddressType{

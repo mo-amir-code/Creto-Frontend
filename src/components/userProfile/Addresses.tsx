@@ -49,9 +49,9 @@ export const Address = ({ selected, address, idx, setSelected }: { selected?: bo
     }
 
     return (
-        <div onClick={handleSetSelected} className={`col-span-1 relative bg-secondary-color/5 shadow-md p-3 ${selected && "border-2 border-primary-color"} rounded-lg smooth_transition`} >
+        <div onClick={handleSetSelected} className={`col-span-1 relative bg-secondary-color/5 shadow-md p-3 ${selected ? "border-primary-color" : "border-transparent"} border-2 rounded-lg smooth_transition`} >
             <p className="inline-flex space-x-1 text-sm" ><div className="w-4 h-4 pt-[0.1rem]" ><MapPinIcon className="w-4 h-4" /></div><span>{address.address}, {address.city}, {address.city}, {address.country}</span></p>
-            <div onClick={handleRemoveAddress} className="absolute top-3 right-4 hover:-translate-y-1 smooth_transition bg-red-600 hover:bg-white active:bg-primary-color p-1 rounded-full shadow-lg " >
+            <div onClick={handleRemoveAddress} className="absolute top-3 right-4 hover:-translate-y-1 smooth_transition bg-primary-color hover:bg-white active:bg-primary-color p-1 rounded-full shadow-lg " >
                 <XMarkIcon className="w-4 h-4 " />
             </div>
         </div>
