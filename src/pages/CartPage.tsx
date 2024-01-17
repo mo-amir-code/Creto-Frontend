@@ -44,7 +44,7 @@ const CartPage = () => {
       <div className="w-full flex justify-center py-12 max-lg:flex-col max-lg:justify-start max-lg:gap-8" >
         {cart.data?.length > 0 ? <>
           <CartItems cart={cart?.data} />
-          <CartBill isCart={true} subTotal={subTotal} />
+          <CartBill path="checkout" subTotal={subTotal} />
         </> : <EmptyCart message="Cart is empty." />}
       </div>
     </div>

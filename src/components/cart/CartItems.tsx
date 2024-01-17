@@ -49,7 +49,7 @@ const CartItem = ({cartItem}:{cartItem:CartDataType}) => {
                             {/* Product details */}
                             <div className="flex flex-col justify-between items-start" >
                                 <div>
-                                    <h2 className="font-[Teko] text-2xl font-semibold max-sm:text-lg hover:text-primary-color smooth_transition" >Mountain Bike With Gears</h2>
+                                    <h2 className="font-[Teko] text-2xl font-semibold max-sm:text-lg hover:text-primary-color smooth_transition" >{(cartItem?.productId as CartItemObjectType).title}</h2>
                                     <div>
                                         <p className="font-semibold text-sm text-gray-500 max-sm:text-xs" >FRAME: <span className="font-bold" >{cartItem?.frameSize}</span></p>
                                         <p className="font-semibold text-sm text-gray-500 max-sm:text-xs flex items-center justify-start gap-2" ><span>COLOR:</span> <span style={{backgroundColor: `${cartItem?.color}`}} className="w-3 hover:shadow-lg smooth_transition h-3 rounded-full" /></p>

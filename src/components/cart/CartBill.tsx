@@ -1,8 +1,22 @@
-import { Link } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import { calculateGST, calculateTotal } from "../../services"
 
 
-const CartBill = ({ subTotal, isCart }: { subTotal: number | undefined, isCart: boolean }) => {
+
+const CartBill = ({ subTotal, path, handleMakePayment }: { subTotal: number | undefined, path: string, handleMakePayment?: Function }) => {
+  const navigate = useNavigate();
+
+  const handleCheckoutButton = () => {
+    if (path === "checkout") {
+      navigate("/user/cart/checkout");
+    } else {
+      if (handleMakePayment) {
+        handleMakePayment();
+      }
+    }
+  }
+
+
   return (
     <div className="flex-[0.35] w-full max-md:mx-0 mx-2 rounded-lg text-secondary-color p-4" >
       <div className="space-y-3" >
@@ -15,7 +29,7 @@ const CartBill = ({ subTotal, isCart }: { subTotal: number | undefined, isCart: 
         <div className="py-2" >
           <h3 className="flex items-center py-3 border-t border-b border-secondary-color justify-between font-semibold" ><span>Total</span><span>${calculateTotal(subTotal)?.toFixed(2)}</span></h3>
         </div>
-        {isCart && <Link to={`/user/cart/checkout`} className="w-full py-3 font-bold shadow-lg smooth_transition hover:-translate-y-1 flex items-center justify-center bg-primary-color rounded-full" >Checkout</Link>}      </div>
+        <button onClick={()=>handleCheckoutButton()} className="w-full py-3 font-bold shadow-lg smooth_transition hover:-translate-y-1 flex items-center justify-center bg-primary-color rounded-full" >Checkout</button>      </div>
     </div>
   )
 }

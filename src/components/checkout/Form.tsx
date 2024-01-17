@@ -7,11 +7,17 @@ const Form = ({handleOnSubmit}:{handleOnSubmit:Function}) => {
     const {
         register,
         handleSubmit,
+        reset,
     } = useForm<FormData>();
+
+    const handleResetFormWithSubmit = (data:any) => {
+        reset();
+        handleOnSubmit(data);
+    }
 
 
     return (
-        <form onSubmit={(handleSubmit((data: any) => handleOnSubmit(data)))} className="space-y-4" >
+        <form onSubmit={(handleSubmit((data: any) => handleResetFormWithSubmit(data)))} className="space-y-4" >
             <ContactInputField placeHolder="Full name" icon="name" type="text" register={register} />
             <ContactInputField placeHolder="Email" icon="email" type="email" register={register} />
             <ContactInputField placeHolder="Address" icon="address" type="text" register={register} />

@@ -1,4 +1,4 @@
-import bike from "../../assets/products/bike_1.png"
+import { OrderItemType } from "../componentsTypes"
 
 const UserOrders = () => {
   return (
@@ -54,28 +54,28 @@ export const Order = () => {
 
       {/* Order items */}
       <div className="w-full flex items-center flex-wrap gap-3 border-t border-secondary-color" >
+        {/* <OrderItem />
         <OrderItem />
-        <OrderItem />
-        <OrderItem />
+        <OrderItem /> */}
       </div>
     </div>
   )
 }
 
-export const OrderItem = () => {
+export const OrderItem = ({ title, thumbnail, color, quantity, price }: OrderItemType) => {
   return (
     <div className="min-w-[300px] w-full flex gap-2 max-[1020px]:border-none flex-1 py-4 " >
       <div className="w-[80px] h-[80px] flex items-center justify-center shadow-md rounded-lg" >
-        <img src={bike} alt="product" className="w-full object-center" />
+        <img src={thumbnail} alt="product" className="w-full object-center" />
       </div>
       <div className="py-2 flex-grow flex items-center justify-between" >
-        <div>
-          <h4 className="font-semibold text-gray-500 text-sm" >Bicycle with six gears</h4>
-          <h4 className="font-semibold text-gray-500 text-sm" >Color: red</h4>
-          <h4 className="font-semibold text-gray-500 text-sm" >Item: 2</h4>
+        <div className="w-full" >
+          <h4 className="font-semibold text-gray-500 text-sm" >{title}</h4>
+          <div className="font-semibold text-gray-500 text-sm flex items-center gap-1" ><span>Color: </span><div style={{ backgroundColor: color }} className="w-3 h-3 shadow-lg mt-1 rounded-full"></div></div>
+          <h4 className="font-semibold text-gray-500 text-sm" >Item: {quantity}</h4>
         </div>
-        <div className="h-full flex items-end justify-end" >
-          <h4 className="font-bold text-gray-500 text-sm" >SubTotal: $645</h4>
+        <div className="h-full w-full flex items-end justify-end" >
+          <h4 className="font-bold text-gray-500 text-sm" >SubTotal: ${price * quantity}</h4>
         </div>
       </div>
     </div>

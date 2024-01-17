@@ -6,25 +6,33 @@ import authSlice from "./auth/authSlice";
 import productSlice from "./product/productSlice";
 import promotionSlice from "./promotion/promotionSlice";
 import userSlice from "./user/userSlice";
-
+import appSlice from "./app/appSlice"
 
 // Persisting storage
+const appPersistConfige = {
+  key: "app",
+  storage,
+  whitelist: ["makePayment", "paymentStatus"]
+};
+
 const authPersistConfige = {
   key: "auth",
   storage,
 };
 
-const appPersistConfige = {
+const userPersistConfige = {
   key: "user",
   storage,
   whitelist: ["userInfo"],
 };
 
+const persistedAppReducer = persistReducer(appPersistConfige, appSlice);
 const persistedAuthReducer = persistReducer(authPersistConfige, authSlice);
-const persistedUserReducer = persistReducer(appPersistConfige, userSlice);
+const persistedUserReducer = persistReducer(userPersistConfige, userSlice);
 
 
 const rootReducer = combineReducers({
+    app: persistedAppReducer,
     auth: persistedAuthReducer,
     product: productSlice,
     promotion: promotionSlice,

@@ -49,6 +49,7 @@ export interface CartItemObjectType{
       nos: string,
       cr: string
     },
+    title: string,
     _id: string,
     thumbnail: string,
     type: string

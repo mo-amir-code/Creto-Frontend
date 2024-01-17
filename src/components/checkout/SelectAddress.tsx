@@ -1,19 +1,24 @@
-import { useState } from "react"
-import { useAppSelector } from "../../redux/hooks";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { selectUserInfo } from "../../redux/user/userSlice";
 import { Address } from "../userProfile/Addresses"
+import { selectSelectedAddress, setSelectedAddress } from "../../redux/app/appSlice";
 
 
 const SelectAddress = () => {
-    const [selected, setSelected] = useState(0);
     const userInfo = useAppSelector(selectUserInfo);
+    const selected = useAppSelector(selectSelectedAddress);
+    const dispatch = useAppDispatch();
+
+    const handleSetAddress = (idx:string) => {
+        dispatch(setSelectedAddress(idx));
+    }
 
     return (
         <div>
             <div className="flex flex-col justify-center gap-3" >
                 {
                     userInfo.data?.addresses.map((address, idx) => (
-                        <Address key={idx} address={address} setSelected={setSelected} selected={selected === idx? true : false} idx={idx} />
+                        <Address key={idx} address={address} setSelected={handleSetAddress} selected={selected === idx? true : false} idx={idx} />
                     ))
                 }
             </div>
