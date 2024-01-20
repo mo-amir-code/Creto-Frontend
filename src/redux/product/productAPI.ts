@@ -134,3 +134,15 @@ export const searchQuery = ({type}:{type:string}) => {
         }
     })
 }
+
+
+export const deleteUserCartItems = ({userId, items, all}:{userId?:string, items?:[string], all:boolean}) => {
+    return new Promise(async (resolved, rejected) => {
+        try {
+            const response = await httpAxios.delete(`/product/user/cart`, {data: {userId, items, all}});
+            resolved(response.data);
+        } catch (error) {
+            rejected(error);
+        }
+    })
+}

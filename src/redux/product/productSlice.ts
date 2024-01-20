@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { CartDataType, ProductSliceType } from "./productTypes";
-import { addToCartAsync, deleteCartAsync, editCartAsync, fetchCartCountAsync, fetchCartDataAsync, getAllProductsAsync, getProductByIdAsync, getRelatedProductsAsync, getTopSellProductsAsync, searchByQueryAsync, searchQueryAsync } from "./productAsyncThunk";
+import { addToCartAsync, deleteCartAsync, deleteUserCartItemsAsync, editCartAsync, fetchCartCountAsync, fetchCartDataAsync, getAllProductsAsync, getProductByIdAsync, getRelatedProductsAsync, getTopSellProductsAsync, searchByQueryAsync, searchQueryAsync } from "./productAsyncThunk";
 import { ActionPayloadType } from "../auth/authTypes";
 import { toast } from "react-toastify";
 import { RootState } from "../store";
@@ -186,6 +186,20 @@ const productSlice = createSlice({
         const { message } = action.error as ActionPayloadType;
         state.products.status = "error";
         toast.error(message);
+      })
+      .addCase(deleteUserCartItemsAsync.fulfilled, (state, action) => {
+        const {data:{items, all}} = action.payload as ActionPayloadType;
+        if(state.cart.data){
+          if(!all){
+            const filteredItems = state.cart.data.filter((item) => !items.includes(item._id));
+            state.cart.data = filteredItems as [CartDataType]; 
+          }else{
+            state.cart.data = [];
+          }
+        }
+      })
+      .addCase(deleteUserCartItemsAsync.rejected, () => {
+        toast.error("Something went wrong.");
       })
       
   },

@@ -7,7 +7,7 @@ import { addToCartAsync } from "../../redux/product/productAsyncThunk";
 import { toast } from "react-toastify";
 import { selectCart } from "../../redux/product/productSlice";
 import Loader from "../Loader";
-import { useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import Slider from "react-slick";
 import ArrowButton from "../categories/ArrowButton";
 import { addProductToWishlistAsync, removeProductFromWishlistAsync } from "../../redux/user/userAsyncThunk";
@@ -30,6 +30,7 @@ const Hero = ({ product }: { product: ProductType | null }) => {
     const cart = useAppSelector(selectCart)
     const dispatch = useAppDispatch();
     const sliderRef = useRef<Slider>(null);
+    const navigate = useNavigate();
 
 
     const handlePrev = () => {
@@ -57,7 +58,7 @@ const Hero = ({ product }: { product: ProductType | null }) => {
     };
 
 
-    const handleAddToCart = () => {
+    const handleAddToCart = ({ redirectToCart }: { redirectToCart?: boolean }) => {
         const data = {
             productId: product?._id || "",
             purchasedUserId: loggedInUser?.userId || "",
@@ -68,7 +69,8 @@ const Hero = ({ product }: { product: ProductType | null }) => {
             quantity: quantity,
         }
         if (loggedInUser && isLoggedIn) {
-            dispatch(addToCartAsync({ data }))
+            dispatch(addToCartAsync({ data }));
+            if (redirectToCart) navigate("/user/cart");
         } else {
             toast.error("Login your account");
         }
@@ -230,8 +232,8 @@ const Hero = ({ product }: { product: ProductType | null }) => {
                     </div>
                 </div>
                 <div className="px-8 max-[900px]:px-2 flex flex-wrap items-center justify-start text-xl font-[Teko] gap-4" >
-                    <button className="py-2 px-10 max-lg:px-8 flex items-center justify-center border-2 tracking-wider font-medium hover:shadow-lg duration-200 transition-all text-secondary-color border-primary-color bg-primary-color" >BUY NOW</button>
-                    <button onClick={handleAddToCart} className="py-2 h-full px-10 max-lg:px-8 flex items-center justify-center border-2 tracking-wider font-medium hover:shadow-lg duration-200 transition-all text-secondary-color border-primary-color" ><span className="w-24 flex items-center justify-center" >{cart?.status === "pending" ? <div className="w-8 h-6" ><Loader /></div> : "ADD TO CART"}</span></button>
+                    <button onClick={() => handleAddToCart({ redirectToCart: true })} className="py-2 px-10 max-lg:px-8 flex items-center justify-center border-2 tracking-wider font-medium hover:shadow-lg duration-200 transition-all text-secondary-color border-primary-color bg-primary-color" >BUY NOW</button>
+                    <button onClick={() => handleAddToCart({ redirectToCart: false })} className="py-2 h-full px-10 max-lg:px-8 flex items-center justify-center border-2 tracking-wider font-medium hover:shadow-lg duration-200 transition-all text-secondary-color border-primary-color" ><span className="w-24 flex items-center justify-center" >{cart?.status === "pending" ? <div className="w-8 h-6" ><Loader /></div> : "ADD TO CART"}</span></button>
                 </div>
             </div>
         </div>

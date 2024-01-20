@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { toast } from "react-toastify";
-import { addToCart, deleteCart, editCart, fetchCartCount, fetchCartData, getAllProducts, getProductById, getRelatedProducts, getTopSellProducts, searchByQuery, searchQuery } from "./productAPI";
+import { addToCart, deleteCart, deleteUserCartItems, editCart, fetchCartCount, fetchCartData, getAllProducts, getProductById, getRelatedProducts, getTopSellProducts, searchByQuery, searchQuery } from "./productAPI";
 import { CartDataType } from "./productTypes";
 
 
@@ -112,4 +112,9 @@ export const searchQueryAsync = createAsyncThunk("product/searchQuery", async ({
         console.error(error);
         toast.error("Something went wrong")
     }
+})
+
+export const deleteUserCartItemsAsync = createAsyncThunk("product/deleteUserCartItems", async ({userId, items, all}:{userId?:string, items?:[string], all:boolean}) => {
+    const respone = await deleteUserCartItems({userId, items, all})
+    return respone;
 })

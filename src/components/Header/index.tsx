@@ -40,7 +40,7 @@ const Header = ({ menuOpen, setMenuOpen }: { menuOpen: boolean, setMenuOpen: Fun
                 </span>
                 {isLoggedIn ? <div className="flex items-center gap-2" >
                     <span className="relative cursor-pointer border-r border-secondary-color_3 pr-2" >
-                        <Link to={"/user/wishlist"} ><HeartIcon className="w-5 h-5 max-md:w-4 max-md:h-4 font-bold text-secondary-color_3" /></Link>
+                        <Link to={"/user/wishlist"} ><HeartIcon className="w-5 h-5 max-md:w-4 hover:text-red-600 smooth_transition max-md:h-4 font-bold text-secondary-color_3" /></Link>
                         {/* <span className="absolute bottom-[45%] left-[40%] text-[0.6rem] bg-primary-color rounded-full w-4 h-4 text-center" >
                             6
                         </span> */}
