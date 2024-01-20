@@ -33,14 +33,14 @@ const HomeLayout = () => {
             dispatch(fetchCartCountAsync({ userId: loggedInUser?.userId }));
         }
 
-    }, [path, isLoggedIn])
+    }, [path, isLoggedIn]);
 
     useEffect(() => {
         if (isLoggedIn && loggedInUser && !userInfo.data) {
             dispatch(fetchUserAsync({ userId: loggedInUser.userId }))
         }
 
-    }, [])
+    }, []);
 
     return (
         <div className="w-full relative" >

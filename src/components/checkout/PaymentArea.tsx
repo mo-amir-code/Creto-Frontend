@@ -1,5 +1,5 @@
 import { makePaymentRequestAsync } from "../../redux/app/appAsyncThunk"
-import { selectSelectedAddress } from "../../redux/app/appSlice"
+import { selectSelectedAddress, setPaymentStatus } from "../../redux/app/appSlice"
 import { OrderItemType, OrderType } from "../../redux/app/appTypes"
 import { useAppDispatch, useAppSelector } from "../../redux/hooks"
 import { selectCart } from "../../redux/product/productSlice"
@@ -39,6 +39,7 @@ const PaymentArea = () => {
                 totalAmount: subTotal
             } as OrderType;
             dispatch(makePaymentRequestAsync({ data }));
+            dispatch(setPaymentStatus("pending"));
         }
     }
 

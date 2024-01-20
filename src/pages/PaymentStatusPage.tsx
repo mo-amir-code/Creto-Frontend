@@ -3,7 +3,8 @@ import { useEffect } from "react";
 import paymentStatus from "../assets/payment/card-success.png"
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import { deleteUserCartItemsAsync } from "../redux/product/productAsyncThunk";
-import { selectLoggedInUser } from "../redux/auth/authSlice";
+import { selectIsLoggedIn, selectLoggedInUser } from "../redux/auth/authSlice";
+import { selectPaymentStatus, setPaymentStatus } from "../redux/app/appSlice";
 
 
 const PaymentStatusPage = () => {
@@ -11,22 +12,26 @@ const PaymentStatusPage = () => {
     const navigate = useNavigate();
     const disptach = useAppDispatch();
     const loggedInUser = useAppSelector(selectLoggedInUser);
+    const isLoggedIn = useAppSelector(selectIsLoggedIn);
+    const isPayment = useAppSelector(selectPaymentStatus);
 
     useEffect(() => {
-        if (!status) {
+        if (!status || !isPayment) {
             navigate("/");
         }
 
         let timeoutId: any;
 
-        if (status === "success" || status === "cancel") {
+        if ((status === "success" || status === "cancel") && isLoggedIn) {
             timeoutId = setTimeout(() => {
+                disptach(setPaymentStatus(null));
                 navigate("/");
             }, 5000);
 
             if (status === "success") {
                 disptach(deleteUserCartItemsAsync({ all: true, userId: loggedInUser?.userId }));
             }
+            disptach(setPaymentStatus(status));
         }
 
         return () => {
