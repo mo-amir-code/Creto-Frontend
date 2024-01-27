@@ -66,3 +66,28 @@ export const fetchUserWishlistProducts = ({userId}:{userId:string}) => {
         }
     })
 }
+
+
+export const fetchUserOrders = ({userId}:{userId:string}) => {
+    return new Promise(async (resolved, rejected) => {
+        try {
+            const response = await httpAxios.get(`/order/all?userId=${userId}`);
+            resolved(response.data);
+        } catch (error:any) {
+            console.log(error)
+            rejected(error.response.data);
+        }
+    })
+}
+
+export const deleteUserOrder = ({orderId}:{orderId:string}) => {
+    return new Promise(async (resolved, rejected) => {
+        try {
+            const response = await httpAxios.delete(`/order/delete`, {data: {orderId}});
+            resolved(response.data);
+        } catch (error:any) {
+            console.log(error)
+            rejected(error.response.data);
+        }
+    })
+}

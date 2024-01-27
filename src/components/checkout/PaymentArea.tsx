@@ -24,7 +24,6 @@ const PaymentArea = () => {
                 return {
                     title: (item.productId as CartItemObjectType).title,
                     productId: (item.productId as CartItemObjectType)._id,
-                    purchasedUserId: item.purchasedUserId,
                     currentPrice: Math.ceil(item.currentPrice),
                     quantity: item.quantity,
                     color: item.color,
@@ -33,6 +32,7 @@ const PaymentArea = () => {
                 }
             }) as [OrderItemType] | [];
             const data = {
+                purchasedUserId: userInfo.data._id,
                 orderItems: items,
                 deliveryAddress: userInfo.data?.addresses[selectedAddress],
                 paymentMode: "card",

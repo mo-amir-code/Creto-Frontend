@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { addAddress, addProductToWishlist, fetchUser, fetchUserWishlistProducts, removeAddress, removeProductFromWishlist } from "./userAPI";
+import { addAddress, addProductToWishlist, deleteUserOrder, fetchUser, fetchUserOrders, fetchUserWishlistProducts, removeAddress, removeProductFromWishlist } from "./userAPI";
 import { AddAddressType } from "./userTypes";
 
 
@@ -31,4 +31,15 @@ export const removeProductFromWishlistAsync = createAsyncThunk("user/removeProdu
 export const fetchUserWishlistProductsAsync = createAsyncThunk("user/fetchUserWishlistProducts", async ({userId}:{userId:string}) => {
     const respone = await fetchUserWishlistProducts({userId})
     return respone;
+})
+
+
+export const fetchUserOrdersAsync = createAsyncThunk("app/fetchUserOrders", async ({userId}:{userId:string}) => {
+    const response = await fetchUserOrders({userId});
+    return response;
+})
+
+export const deleteUserOrderAsync = createAsyncThunk("app/deleteUserOrder", async ({orderId}:{orderId:string}) => {
+    const response = await deleteUserOrder({orderId});
+    return response;
 })

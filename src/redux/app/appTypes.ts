@@ -5,6 +5,7 @@ export interface AppSliceType{
 }
 
 export interface OrderType{
+   purchasedUserId: string,
     orderItems: [OrderItemType],
     deliveryAddress: DeliveryAddressType,
     paymentMode: string,
@@ -14,7 +15,6 @@ export interface OrderType{
   export interface OrderItemType{
     title?:string,
     productId: string,
-    purchasedUserId: string,
     currentPrice: number,
     quantity: number,
     color: string,

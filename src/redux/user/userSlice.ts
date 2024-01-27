@@ -2,12 +2,14 @@ import { createSlice } from "@reduxjs/toolkit";
 import {
   addAddressAsync,
   addProductToWishlistAsync,
+  deleteUserOrderAsync,
   fetchUserAsync,
+  fetchUserOrdersAsync,
   fetchUserWishlistProductsAsync,
   removeAddressAsync,
   removeProductFromWishlistAsync,
 } from "./userAsyncThunk";
-import { AddressType, UserSliceType } from "./userTypes";
+import { AddressType, OrderType, UserSliceType } from "./userTypes";
 import { ActionPayloadType } from "../auth/authTypes";
 import { toast } from "react-toastify";
 import { RootState } from "../store";
@@ -21,7 +23,11 @@ const initialState = {
   userWishlist:{
     status: null,
     data: []
-  }
+  },
+  userOrders:{
+    status: null,
+    data: [] as [OrderType] | []
+  },
 } as UserSliceType;
 
 const userSlice = createSlice({
@@ -116,6 +122,31 @@ const userSlice = createSlice({
         state.userWishlist.status = "error";
         toast.error(message);
       })
+      .addCase(fetchUserOrdersAsync.pending, (state) => {
+        state.userOrders.status = "pending";
+      })
+      .addCase(fetchUserOrdersAsync.fulfilled, (state, action) => {
+        const {data} = action.payload as ActionPayloadType;
+        state.userOrders.status = "success";
+        state.userOrders.data = data as [OrderType] | [];
+      })
+      .addCase(fetchUserOrdersAsync.rejected, (state, action) => {
+        const { message } = action.payload as ActionPayloadType;
+        state.userOrders.status = "error";
+        toast.error(message);
+      })
+      .addCase(deleteUserOrderAsync.fulfilled, (state, action) => {
+        const {data:{orderId}} = action.payload as ActionPayloadType;
+        if(state.userOrders.data){
+          const filterOrders = state.userOrders.data.filter((item) => item._id !== orderId);
+          state.userOrders.data = filterOrders as [OrderType] | [];
+        }
+      })
+      .addCase(deleteUserOrderAsync.rejected, (state, action) => {
+        const { message } = action.payload as ActionPayloadType;
+        state.userOrders.status = state.userOrders.status;
+        toast.error(message);
+      })
   },
 });
 
@@ -123,5 +154,6 @@ export const { resetUserState } = userSlice.actions;
 
 export const selectUserInfo = (state: RootState) => state.user.userInfo;
 export const selectUserWishlist = (state: RootState) => state.user.userWishlist;
+export const selectUserOrders = (state: RootState) => state.user.userOrders;
 
 export default userSlice.reducer;
