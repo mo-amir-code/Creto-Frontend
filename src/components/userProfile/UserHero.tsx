@@ -4,8 +4,8 @@ import { UserInfoType } from "../../redux/user/userTypes";
 
 const UserHero = ({ userInfo }: { userInfo: UserInfoType | null }) => {
   return (
-    <div className="w-full flex items-center border-b justify-between">
-      <div className="w-full flex items-center py-4 gap-2 border-secondary-color">
+    <div className="w-full flex items-center border-b justify-between border-secondary-color">
+      <div className="w-full flex items-center py-4 gap-2">
         {/* User image */}
         <div className="flex items-center justify-center">
           <div className="w-14 border rounded-full p-2 overflow-hidden">
