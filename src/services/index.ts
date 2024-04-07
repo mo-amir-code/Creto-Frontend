@@ -17,7 +17,7 @@ export const firstLetterCap = (str: string) => {
 };
 
 export const httpAxios = axios.create({
-  baseURL: import.meta.env.VITE_NODE_ENV === "development" ? "http://localhost:8000" : "https://creto-backend.onrender.com",
+  baseURL: import.meta.env.SERVER_ORIGIN,
 });
 
 export const isAuth = () => {
