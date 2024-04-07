@@ -17,7 +17,7 @@ export const firstLetterCap = (str: string) => {
 };
 
 export const httpAxios = axios.create({
-  baseURL: import.meta.env.SERVER_ORIGIN,
+  baseURL: import.meta.env.VITE_SERVER_ORIGIN,
 });
 
 export const isAuth = () => {
